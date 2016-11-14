@@ -1,2 +1,2 @@
-# airbnb-backend
-Backend application for airbnb
+# airbnb
+Client and server applications for airbnb
