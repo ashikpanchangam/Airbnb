@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+    <!-- Loading the AngularJS file from /public/angularJS folder -->
+    <script src="angularjs/login.js"></script>
+
+
+</head>
+<body ng-app="login" ng-controller="login">
+
+<div class="container">
+    <div class="row" style="margin-top:60px;">
+        <div class="col-md-4 col-md-offset-4">
+            <form class="form-signin">
+                <fieldset>
+                    <h3 class="sign-up-title" style="color:dimgray; text-align: center">Log in</h3>
+
+                    <hr class="colorgraph">
+                    <input class="form-control" name="Username" placeholder="Username" required="" autofocus="" type="text" ng-model="username"/><br>
+                    <input class="form-control" placeholder="Password" name="password" type="password" required="" value="" ng-model="password"/>
+                    <div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <!--<input type="submit" value="Login" ng-click="submit();" />-->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="submit();">Log in</button>
+                    </div>
+                    <div class="btn-group">
+                        <p class="btn btn-link">Don’t have an account?</p>
+                        <p class="btn btn-link"><a href="/register">Register</a></p>
+                    </div>
+                    <div class="alert alert-danger" ng-hide="invalid_login">
+                        <strong>Incorrect username or password</strong>
+                    </div>
+                    <div class="alert alert-danger" ng-hide="unexpected_error">
+                        <strong>Unexpected error, try again</strong>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
