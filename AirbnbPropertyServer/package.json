@@ -1,5 +1,5 @@
 {
-  "name": "RabbitmqMongo-Server",
+  "name": "AirbnbPropertyServer",
   "version": "0.0.0",
   "private": true,
   "scripts": {
