@@ -2,19 +2,35 @@
 var amqp = require('amqp')
     , util = require('util');
 
-var items = require('./services/items')
+var property = require('./services/property')
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
+var test = function() {
+  const message = {
+    category:'Entire Home',
+    city: 'San Jose',
+    state: 'CA',
+    guests: 2,
+    max_price: 100,
+    min_price: 20,
+    checkout: '2016-11-21',
+    checkin: '2016-11-16'
+  }
+  property.search(message, function(err,res){})
+}
+
+test()
+
 cnn.on('ready', function(){
-  console.log("listening on all_items_queue");
+  console.log("listening on property_search_queue");
 
-  cnn.queue('all_items_queue', function(q){
+  cnn.queue('property_search_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){
       util.log(util.format( deliveryInfo.routingKey, message));
       util.log("Message: "+JSON.stringify(message));
       util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-      items.get_all_items(message, function(err,res){
+      property.search(message, function(err,res){
 
         //return index sent
         cnn.publish(m.replyTo, res, {
@@ -25,25 +41,5 @@ cnn.on('ready', function(){
       });
     });
   });
-
-  console.log("listening on item_info_queue");
-
-  cnn.queue('item_info_queue', function(q){
-    q.subscribe(function(message, headers, deliveryInfo, m){
-      util.log(util.format( deliveryInfo.routingKey, message));
-      util.log("Message: "+JSON.stringify(message));
-      util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-      items.get_item(message, function(err,res){
-
-        //return index sent
-        cnn.publish(m.replyTo, res, {
-          contentType:'application/json',
-          contentEncoding:'utf-8',
-          correlationId:m.correlationId
-        });
-      });
-    });
-  });
-
 
 });
