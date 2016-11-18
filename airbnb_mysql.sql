@@ -97,3 +97,5 @@ CREATE TABLE bill (
 );
 
 SET foreign_key_checks = 1;
+
+ALTER TABLE bill add guests int;
