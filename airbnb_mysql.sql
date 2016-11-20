@@ -17,7 +17,7 @@ CREATE TABLE user (
     state varchar(25),
     zip_code varchar(10),
     phone_number varchar(12),
-    dob varchar(12),
+    dob date,
     email varchar(25),
     password varchar(25),
     profile_img_url varchar(50),
