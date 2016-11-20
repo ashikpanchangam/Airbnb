@@ -5,6 +5,7 @@
 var mongo = require('../db/mongo')
 var mongodb = require('mongodb');
 var mysql = require('../db/mysql')
+var async = require('async')
 
 function search(msg, callback){
 
@@ -20,9 +21,28 @@ function search(msg, callback){
 
     mysql.operate(msg, 'searchProperty', function (result) {
         if (result === false) {
-
+            callback(null, {})
         } else {
-            callback(null, result)
+            async.each(result,
+                function (property, cb) {
+                    mysql.operate(property, 'reviewAndRating', function (r) {
+                        if (r == false) {
+                            property.review_num = 0;
+                            property.rating = 0;
+                        } else {
+                            property.review_num = r.review_num;
+                            property.rating = r.rating;
+                        }
+                        cb();
+                    })
+
+                },
+
+                function () {
+                    console.log('searchResult', result)
+                    callback(null, result)
+                }
+            );
         }
     })
 }

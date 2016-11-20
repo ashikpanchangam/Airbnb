@@ -13,7 +13,7 @@ var test = function() {
     state: 'CA',
     guests: 2,
     max_price: 100,
-    min_price: 40,
+    min_price: 10,
     checkout: '2016-11-17',
     checkin: '2016-11-16'
   }

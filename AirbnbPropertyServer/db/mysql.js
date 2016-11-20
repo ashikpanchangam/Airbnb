@@ -40,6 +40,11 @@ function operate(msg,type,callback) {
                                     'OR from_date >' + connection.escape(msg.checkout) +
                                     'OR to_date <' + connection.escape(msg.checkin)  + ')';
                         break;
+                    case "reviewAndRating":
+                        query = 'select review_property_id, count(*) review_num, avg(ratings) rating from review ' +
+                            'where review_property_id=' + connection.escape(msg.property_id) +
+                            ' group by review_property_id';
+                        break;
                     default :
                         break;
                 }
@@ -51,11 +56,9 @@ function operate(msg,type,callback) {
                     connection.release();
                     if(!err) {
 
-                        if(type === "signin" || type === "profile") {
+                        if(type === "reviewAndRating") {
                             callback(null, rows.length === 0 ? false : rows[0]);
-                        } else if(type === "authenticate") {
-                            callback(null, rows.length === 0 ? false : true);
-                        } else if(type === "searchProperty") {
+                        } else if(type === "searchProperty" ) {
                             callback(null, rows.length === 0 ? false : rows);
                         } else {
                             console.log('Query type: ' + type);
