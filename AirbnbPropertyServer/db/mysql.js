@@ -6,9 +6,9 @@ var async = require("async");
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,
-    host     : '54.212.241.30',
-    user     : 'root',
-    password : 'root',
+    host     : 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com',
+    user     : 'cmpe273',
+    password : 'cmpe273',
     database : 'airbnb_mysql',
     debug    :  false
 });
@@ -67,7 +67,8 @@ function operate(msg,type,callback) {
                 });
             }],
         function(err, result){
-            console.log('Query err: ' + err + ' result: ' + result);
+            console.log('Query err: ',  err)
+            console.log('Query result: ', result);
             if(err) {
                 callback(null);
             } else {

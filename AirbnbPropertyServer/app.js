@@ -13,8 +13,8 @@ var test = function() {
     state: 'CA',
     guests: 2,
     max_price: 100,
-    min_price: 20,
-    checkout: '2016-11-21',
+    min_price: 40,
+    checkout: '2016-11-17',
     checkin: '2016-11-16'
   }
   property.search(message, function(err,res){})
