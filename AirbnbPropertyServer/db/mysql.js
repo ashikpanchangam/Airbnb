@@ -45,6 +45,14 @@ function operate(msg,type,callback) {
                             'where review_property_id=' + connection.escape(msg.property_id) +
                             ' group by review_property_id';
                         break;
+                    case "getProperty":
+                        query = 'select * from property ' +
+                            'where property_id=' + connection.escape(msg.property_id);
+                        break;
+                    case "getReview":
+                        query = 'select * from review ' +
+                            'where review_property_id=' + connection.escape(msg.property_id);
+                        break;
                     default :
                         break;
                 }
@@ -56,9 +64,9 @@ function operate(msg,type,callback) {
                     connection.release();
                     if(!err) {
 
-                        if(type === "reviewAndRating") {
+                        if(type === "reviewAndRating" || type === "getProperty") {
                             callback(null, rows.length === 0 ? false : rows[0]);
-                        } else if(type === "searchProperty" ) {
+                        } else if(type === "searchProperty" || type === "getReview") {
                             callback(null, rows.length === 0 ? false : rows);
                         } else {
                             console.log('Query type: ' + type);
