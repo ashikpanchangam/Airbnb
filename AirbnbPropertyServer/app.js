@@ -19,21 +19,21 @@ var test = function() {
   // }
   // property.search(message, function(err,res){})
 
-  // const message = {
-  //   action: "GET_INFO",
-  //   content: {
-  //     property_id: '123-45-6789'
-  //   }
-  // }
-  // property.getDetail(message, function(err,res){})
-
   const message = {
-    action: "GET_REVIEW",
+    action: "GET_INFO",
     content: {
       property_id: '123-45-6789'
     }
   }
   property.getDetail(message, function(err,res){})
+
+  // const message = {
+  //   action: "GET_REVIEW",
+  //   content: {
+  //     property_id: '123-45-6789'
+  //   }
+  // }
+  // property.getDetail(message, function(err,res){})
 }
 
 test()

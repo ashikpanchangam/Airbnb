@@ -6,6 +6,7 @@ var mongo = require('../db/mongo')
 var mongodb = require('mongodb');
 var mysql = require('../db/mysql')
 var async = require('async')
+var redis = require('../db/redis')
 
 function search(msg, callback){
     console.log("[PROPERTY SERVER] search ", msg)
@@ -60,6 +61,8 @@ var getInfo = function(req, callback) {
             callback(null, {})
         } else {
             //TODO: store to redis for caching
+            redis.cacheProperty(result)
+
             callback(null, result)
         }
     })
