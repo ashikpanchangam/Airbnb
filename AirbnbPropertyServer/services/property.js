@@ -3,10 +3,17 @@
  */
 
 var mongo = require('../db/mongo')
-var mongodb = require('mongodb');
 var mysql = require('../db/mysql')
 var async = require('async')
 var redis = require('../db/redis')
+
+function digit() {
+    return Math.floor(Math.random() * 10);
+}
+
+function guid() {
+    return digit() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit()
+}
 
 function search(msg, callback){
     console.log("[PROPERTY SERVER] search ", msg)
@@ -38,7 +45,7 @@ function search(msg, callback){
     })
 }
 
-function getDetail(msg, callback){
+function detail(msg, callback){
 
     console.log("[PROPERTY SERVER] getDetail ", msg)
 
@@ -49,6 +56,18 @@ function getDetail(msg, callback){
             break
         case 'GET_REVIEW':
             getReview(msg.content, callback)
+            break
+        case 'ADD_PROPERTY':
+            addProperty(msg.content, callback)
+            break
+        case 'ADD_REVIEW':
+            addReview(msg.content, callback)
+            break
+        case 'ADD_PROPERTY_IMAGE':
+            addPropertyImage(msg.content, callback)
+            break
+        case 'GET_PROPERTY_IMAGES':
+            getPropertyImages(msg.content, callback)
             break
         default:
             callback(null, {code: 404})
@@ -78,5 +97,46 @@ var getReview = function(req, callback) {
     })
 }
 
+var addProperty = function(req, callback) {
+    req.quantity = 1;
+    req.property_id = guid();
+    mysql.operate(req, 'addProperty', function (result) {
+        if (result == null) {
+            callback(null, {})
+        } else {
+            callback(null, {statusCode: 200})
+        }
+    })
+}
+
+var addReview = function(req, callback) {
+    mysql.operate(req, 'addReview', function (result) {
+        if (result == null) {
+            callback(null, {})
+        } else {
+            callback(null, {statusCode: 200})
+        }
+    })
+}
+
+var addPropertyImage = function(req, callback) {
+    const i = {
+        id: req.property_id,
+        name: req.name,
+        data: req.data
+    }
+    mongo.storeImage(i, function () {
+        callback(null, {statusCode: 200})
+    })
+}
+
+var getPropertyImages = function(req, callback) {
+    const i = {
+        id: req.property_id
+    }
+    mongo.getImage(i, function (docs) {
+        callback(null, docs)
+    })
+}
 exports.search = search;
-exports.getDetail = getDetail;
+exports.detail = detail;
