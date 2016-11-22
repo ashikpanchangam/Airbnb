@@ -51,7 +51,6 @@ function signUp(msg,type,callback) {
             function(connection,query,callback)
             {
                 connection.query(query,function(err,rows){
-                    console.log(msg.user_id);
                     console.log('Mysql operator: conn_id= ' + connection.threadId + ' query= ' + query);
                     connection.release();
                     if(!err)
