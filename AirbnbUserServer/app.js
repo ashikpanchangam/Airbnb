@@ -2,23 +2,44 @@
 var amqp = require('amqp')
     , util = require('util');
 
-var signUp = require('./services/signup');
+var signUp = require('./services/signUp');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
+
 var userSignUptest = function() {
+
+  function guid()
+  {
+    function s4()
+    {
+      var value = Math.floor((Math.random() * 9) + 1);
+      return value.toString();
+    }
+    return s4() + s4() + s4() + '-' + s4() + s4() + '-' + s4() + s4() + s4() + s4();
+  }
+  var uuid = guid();
+
   const message = {
-    user_id: '324-45-6789',
-    first_name : 'sid',
-    last_name : 'reddy',
-    email : 'sidreddy@gmail.com',
-    password: 'sidreddy',
+    user_id: uuid,
+    first_name : 'ashik',
+    last_name : 'panchangam',
+    email : 'ashikpanchangam@gmail.com',
+    password: 'ashikpanchangam',
     dob: '1994-06-27'
   };
   signUp.userSignUp(message, function(err,res){})
 };
 
+
+var becomeHostTest = function () {
+  const msg = {
+  };
+  signUp.becomeHost(msg, function(err,res){})
+};
+
 userSignUptest();
+becomeHostTest();
 
 cnn.on('ready', function(){
   console.log("listening on signUp queue");

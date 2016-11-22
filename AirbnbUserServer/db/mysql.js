@@ -14,7 +14,7 @@ var pool    =   mysql.createPool({
     debug    :  false
 });
 
-function userSignUp(msg,type,callback) {
+function signUp(msg,type,callback) {
     async.waterfall([
             function(callback) {
                 pool.getConnection(function(err,connection){
@@ -29,14 +29,20 @@ function userSignUp(msg,type,callback) {
             function(connection,callback) {
 
                 var query;
+
                 switch(type) {
-                    case "signUp":
+                    case "userSignUp":
                         query = 'INSERT into user (user_id, first_name, last_name, email, password,' +
                                 ' dob) ' +
                                 'VALUES ('+connection.escape(msg.user_id)+','+connection.escape(msg.first_name)+',' +
                             ''+connection.escape(msg.last_name)+','+connection.escape(msg.email)+',' +
                             ''+connection.escape(msg.password)+','+connection.escape(msg.dob)+')';
                         break;
+                    case "becomeHost":
+                        query = 'INSERT into host (host_id, host_user_id)' +
+                            ' SELECT host_id, host_user_id' +
+                            ' FROM host LEFT JOIN user ON host.host_user_id=user.user_id' +
+                            ' AND host_id=' +connection.escape(msg.user_id);
                     default :
                         break;
                 }
@@ -45,6 +51,7 @@ function userSignUp(msg,type,callback) {
             function(connection,query,callback)
             {
                 connection.query(query,function(err,rows){
+                    console.log(msg.user_id);
                     console.log('Mysql operator: conn_id= ' + connection.threadId + ' query= ' + query);
                     connection.release();
                     if(!err)
@@ -58,7 +65,7 @@ function userSignUp(msg,type,callback) {
                         {
                             callback(null, rows.length === 0 ? false : true);
                         }
-                        else if(type === "signUp")
+                        else if(type === "userSignUp")
                         {
                             callback(null, rows.length === 0 ? false : rows);
                         }
@@ -88,4 +95,4 @@ function userSignUp(msg,type,callback) {
         });
 }
 
-exports.userSignUp = userSignUp;
+exports.signUp = signUp;

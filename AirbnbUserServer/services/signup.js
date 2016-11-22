@@ -8,13 +8,25 @@ var mysql = require('../db/mysql');
 
 function userSignUp(msg, callback){
 
-    mysql.userSignUp(msg, 'signUp', function (result) {
+    mysql.signUp(msg, 'userSignUp', function (result) {
         if (result === false) {
-
+            callback(null, {})
         } else {
             callback(null, result)
         }
     })
 }
 
+function becomeHost(msg, callback) {
+    
+    mysql.signUp(msg,'becomeHost', function (result) {
+        if(result ===false){
+            callback(null, {})
+        }else {
+            callback(null,result)
+        }
+    })
+}
+
 exports.userSignUp = userSignUp;
+exports.becomeHost = becomeHost;
