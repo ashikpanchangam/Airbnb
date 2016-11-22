@@ -19,13 +19,13 @@ var test = function() {
   // }
   // property.search(message, function(err,res){})
 
-  const message = {
-    action: "GET_INFO",
-    content: {
-      property_id: '123-45-6789'
-    }
-  }
-  property.getDetail(message, function(err,res){})
+  // const message = {
+  //   action: "GET_INFO",
+  //   content: {
+  //     property_id: '123-45-6789'
+  //   }
+  // }
+  // property.detail(message, function(err,res){})
 
   // const message = {
   //   action: "GET_REVIEW",
@@ -33,7 +33,7 @@ var test = function() {
   //     property_id: '123-45-6789'
   //   }
   // }
-  // property.getDetail(message, function(err,res){})
+  // property.detail(message, function(err,res){})
 }
 
 test()
@@ -65,7 +65,7 @@ cnn.on('ready', function(){
       util.log(util.format( deliveryInfo.routingKey, message));
       util.log("Message: "+JSON.stringify(message));
       util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-      property.getDetail(message, function(err,res){
+      property.detail(message, function(err,res){
 
         //return index sent
         cnn.publish(m.replyTo, res, {
