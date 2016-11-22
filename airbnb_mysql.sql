@@ -20,7 +20,7 @@ CREATE TABLE user (
     credit_card_number char(16),
     credit_card_expiry date,
     credit_card_holder varchar(50),
-    is_host boolean
+    is_host boolean,
     primary key (user_id)
 );
 
@@ -47,6 +47,7 @@ CREATE TABLE property (
 	price FLOAT(11,2),
 	description varchar(250),
     property_host_id char(11),
+    property_approved int not null,
     primary key (property_id),
     constraint fk_property_host_id foreign key (property_host_id) references user (user_id) on delete cascade
 );

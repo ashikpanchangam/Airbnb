@@ -17,10 +17,21 @@ exports.handle_signUp_request = function (msg,callback) {
     var dob = msg.dob;
     var query;
 
+    function guid()
+    {
+        function s4()
+        {
+            var value = Math.floor((Math.random() * 9) + 1);
+            return value.toString();
+        }
+        return s4() + s4() + s4() + '-' + s4() + s4() + '-' + s4() + s4() + s4() + s4();
+    }
+    var user_id = guid();
+
     console.log(msg);                                       //print the message
         
-    query = "INSERT into user (user_id, first_name, last_name, email, password) values(?,?,?,?,?)";
-    var inputParameters = [email,first_name,last_name,password,dob];
+    query = "INSERT into user (user_id, email, first_name, last_name, password, dob) values(?,?,?,?,?,?)";
+    var inputParameters = [user_id,email,first_name,last_name,password,dob];
     
     var signUpQuery = mysqlModule.format(query, inputParameters);
     mysql.fetchData(function (error,results) {
