@@ -1,7 +1,3 @@
-# Few poinst:
-# 1. char(11) specified for primary keys in most of the tables because the 
-#  the requirement doc says SSN format.
-# 2. Host is same as user so just ID is mapped in host table
 
 SET foreign_key_checks = 0;
 drop database if exists airbnb_mysql;
@@ -24,6 +20,7 @@ CREATE TABLE user (
     credit_card_number char(16),
     credit_card_expiry date,
     credit_card_holder varchar(50),
+    is_host boolean
     primary key (user_id)
 );
 
@@ -51,25 +48,16 @@ CREATE TABLE property (
 	description varchar(250),
     property_host_id char(11),
     primary key (property_id),
-    constraint fk_property_host_id foreign key (property_host_id) references host (host_id) on delete cascade
-);
-
-CREATE TABLE host (
-	host_id char(11) not null,
-    host_user_id char(11) not null,
-    primary key (host_id),
-    constraint fk_host_user_id foreign key (host_user_id) references user (user_id) on delete cascade
+    constraint fk_property_host_id foreign key (property_host_id) references user (user_id) on delete cascade
 );
 
 CREATE TABLE trip (
 	trip_id char(11) not null,
     trip_user_id char(11) not null,
-    trip_host_id char(11) not null,
     trip_property_id char(11) not null,
     trip_bill_id char(11) not null,
     primary key (trip_id),
     constraint fk_trip_user_id foreign key (trip_user_id) references user (user_id) on delete cascade,
-    constraint fk_trip_host_id foreign key (trip_host_id) references host (host_id) on delete cascade,
     constraint fk_trip_property_id foreign key (trip_property_id) references property (property_id) on delete cascade,
     constraint fk_trip_bill_id foreign key (trip_bill_id) references bill (bill_id) on delete cascade
 );
@@ -91,11 +79,9 @@ CREATE TABLE bill (
     from_date date,
     to_date date,
     bill_property_id char(11) not null,
-    bill_host_id char(11) not null,
     bill_user_id char(11) not null,
 	primary key (bill_id),
     constraint fk_bill_user_id foreign key (bill_user_id) references user (user_id) on delete cascade,
-    constraint fk_bill_host_id foreign key (bill_host_id) references host (host_id) on delete cascade,
     constraint fk_bill_property_id foreign key (bill_property_id) references property (property_id) on delete cascade
 );
 
