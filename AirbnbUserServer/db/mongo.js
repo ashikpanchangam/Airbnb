@@ -5,7 +5,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var db;
 var connected = false;
-const url = "mongodb://54.70.90.14:27017/test";
+const url = "mongodb://54.70.90.14:27017/test"
 
 
 MongoClient.connect(url, {
@@ -27,4 +27,4 @@ var collection = function(name) {
     return db.collection(name);
 };
 
-exports.collection = collection;
+exports.collection = collection
