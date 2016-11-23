@@ -37,7 +37,31 @@ cnn.on('ready', function() {
       });
     });
   });
-  
+
+  cnn.queue('becomeHost_queue', function(q){
+    q.subscribe(function(message, headers, deliveryInfo, m){
+      signUp.handle_becomeHost_request(message, function(err,res){
+        cnn.publish(m.replyTo, res, {
+          contentType:'application/json',
+          contentEncoding:'utf-8',
+          correlationId:m.correlationId
+        });
+      });
+    });
   });
+
+  cnn.queue('deleteAccount_queue', function(q){
+    q.subscribe(function(message, headers, deliveryInfo, m){
+      signUp.handle_deleteAccount_request(message, function(err,res){
+        cnn.publish(m.replyTo, res, {
+          contentType:'application/json',
+          contentEncoding:'utf-8',
+          correlationId:m.correlationId
+        });
+      });
+    });
+  });
+  
+});
 
   

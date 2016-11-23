@@ -1,4 +1,4 @@
-/**
+nc/**
  * Created by ASHIK'S PC on 11/20/2016.
  */
 
@@ -7,7 +7,7 @@ var mysql = require('../db/mysql');
 var bcrypt = require('bcrypt-nodejs');
 var mysqlModule = require('mysql');
 
-exports.handle_signUp_request = function (msg,callback) {
+exports.handle_signUp_request = function (msg, callback) {
     console.log("Using the 'signUp_queue'");                //subscribing to the signUp_queue
     var json_response = {};
     var email = msg.email;
@@ -15,6 +15,7 @@ exports.handle_signUp_request = function (msg,callback) {
     var last_name = msg.last_name;
     var password = msg.password;
     var dob = msg.dob;
+    var is_host = false;
     var query;
 
     function guid()
@@ -24,14 +25,21 @@ exports.handle_signUp_request = function (msg,callback) {
             var value = Math.floor((Math.random() * 9) + 1);
             return value.toString();
         }
-        return s4() + s4() + s4() + '-' + s4() + s4() + '-' + s4() + s4() + s4() + s4();
+
+        function s3()
+        {
+            var value = Math.floor((Math.random() * 9) + 0);
+            return value.toString();
+        }
+        return s4() + s3() + s3() + '-' + s3() + s3() + '-' + s3() + s3() + s3() + s3();
     }
+
     var user_id = guid();
 
     console.log(msg);                                       //print the message
         
-    query = "INSERT into user (user_id, email, first_name, last_name, password, dob) values(?,?,?,?,?,?)";
-    var inputParameters = [user_id,email,first_name,last_name,password,dob];
+    query = "INSERT into user (user_id, email, first_name, last_name, password, dob, is_host) values(?,?,?,?,?,?,?)";
+    var inputParameters = [user_id,email,first_name,last_name,password,dob,is_host];
     
     var signUpQuery = mysqlModule.format(query, inputParameters);
     mysql.fetchData(function (error,results) {
@@ -73,7 +81,7 @@ exports.handle_signUp_request = function (msg,callback) {
     }, signUpQuery)
 };
 
-exports.handle_userLogin_request = function () {
+exports.handle_userLogin_request = function (msg, callback) {
     console.log("Using the 'userLogin_queue'");                //subscribing to the userLogin_queue
     var json_response = {};
     var email = msg.email;
@@ -130,4 +138,62 @@ exports.handle_userLogin_request = function () {
             }
         }
     }, query);
+};
+
+exports.handle_becomeHost_request = function (msg, callback) {
+    var json_response = {};
+    var query;
+    var user_id = msg.user_id;
+    console.log("Using the 'becomeHost_queue'");
+
+    query = "UPDATE user SET is_host=true WHERE user_id='"+user_id+"'";
+
+    mysql.fetchData(function(error, results) {
+        if(error)
+        {
+            json_response ={
+                "statusCode" : 401,
+                "results" : error.code
+            };
+            callback(null, json_response);
+        }
+        else
+        {
+            json_response ={
+                "statusCode" : 200,
+                "results" : results,
+                "statusMessage" : "Success"
+            };
+            callback(null, json_response);
+        }
+    }, query)
+};
+
+exports.handle_deleteAccount_request = function (msg, callback) {
+    var json_response = {};
+    var query;
+    var user_id = msg.user_id;
+    console.log("Using the 'deleteAccount_queue'");
+
+    query = "DELETE from user WHERE user_id='"+user_id+"'";
+
+    mysql.fetchData(function(error, results) {
+        if(error)
+        {
+            json_response ={
+                "statusCode" : 401,
+                "results" : error.code
+            };
+            callback(null, json_response);
+        }
+        else
+        {
+            json_response ={
+                "statusCode" : 200,
+                "results" : results,
+                "statusMessage" : "Success"
+            };
+            callback(null, json_response);
+        }
+    }, query)
 };
