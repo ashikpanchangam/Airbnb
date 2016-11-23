@@ -4,6 +4,7 @@ var util = require('util');
 var mongo = require('./mongo-db');
 var bids = require('./services/bids');
 var trips = require('./services/trips');
+var bills = require('./services/bill');
 
 mongo.connect(function (err) {
   try{
@@ -40,6 +41,22 @@ conn.on('ready', function(){
       util.log("Message: "+JSON.stringify(message));
       util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
       trips.handle_trip_queue(message, function(err, res){
+        //return index sent
+        conn.publish(m.replyTo, res, {
+          contentType:'application/json',
+          contentEncoding:'utf-8',
+          correlationId:m.correlationId
+        });
+      });
+    });
+  });
+
+  conn.queue('bill_queue', function(q){
+    q.subscribe(function(message, headers, deliveryInfo, m){
+      util.log(util.format( deliveryInfo.routingKey, message));
+      util.log("Message: "+JSON.stringify(message));
+      util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+      bill.handle_bill_queue(message, function(err, res){
         //return index sent
         conn.publish(m.replyTo, res, {
           contentType:'application/json',

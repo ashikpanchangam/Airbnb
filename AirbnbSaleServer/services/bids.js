@@ -2,10 +2,8 @@
  * Created by rishi on 11/21/16.
  */
 
-var mongo = require('../db/mongo');
 var mysql = require('../db/mysql');
 var timeUtil = require('../helpers/timeutil');
-var util = require('util');
 
 var INSERT_BID = "INSERT INTO bid (bid_amount, bid_time, bid_property_id, bid_user_id) VALUES (";
 var GET_BIDS = "SELECT bid_id, bid_amount, DATE_FORMAT(bid_time,'%Y-%m-%d %h:%i:%s') as bid_time," +
