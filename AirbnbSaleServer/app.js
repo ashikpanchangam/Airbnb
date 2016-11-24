@@ -1,20 +1,16 @@
 //super simple rpc server example
 var amqp = require('amqp');
 var util = require('util');
-var mongo = require('./mongo-db');
 var bids = require('./services/bids');
 var trips = require('./services/trips');
 var bills = require('./services/bill');
 
-mongo.connect(function (err) {
-  try{
-    console.log("Mongod connected");
-  }catch (err){
-    console.err("Couldn't connect to mongo db");
-  }
-});
+var test = require('./test/server_test');
 
 var conn = amqp.createConnection({host:'127.0.0.1'});
+
+//test.executeInsertTests();
+test.executeGetTests();
 
 conn.on('ready', function(){
   console.log("listening on queues");
@@ -56,7 +52,7 @@ conn.on('ready', function(){
       util.log(util.format( deliveryInfo.routingKey, message));
       util.log("Message: "+JSON.stringify(message));
       util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-      bill.handle_bill_queue(message, function(err, res){
+      bills.handle_bill_queue(message, function(err, res){
         //return index sent
         conn.publish(m.replyTo, res, {
           contentType:'application/json',

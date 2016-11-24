@@ -3,6 +3,7 @@
  */
 
 var mysql = require("mysql");
+var logger = require('../helpers/logger').getLogger();
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,
@@ -15,27 +16,26 @@ var pool    =   mysql.createPool({
 
 function handleError(err) {
     logger.error("Error getting connection: '"+ err);
-    return {statusCode : 503};
 }
 
 function queryExecutionError(err, query){
     logger.error("Query: '"+ query + "' execution failed. Error " + err);
-    return {statusCode: 503};
 }
 
-function performOperation(query){
+function performOperation(query, callback){
     pool.getConnection(function (err, connection) {
         if(err){
             handleError(err);
-            return;
+            callback(true, err);
         }
+        console.log("Making query :"+ query);
         connection.query(query, function (err, rows, fields) {
             if(err){
                 queryExecutionError(err, query);
-                return;
+                callback(true, err);
             }
             connection.release();
-            return {statusCode: 200, rows: rows, fields: fields};
+            callback(false, {rows: rows, fields: fields});
         });
     });
 }
