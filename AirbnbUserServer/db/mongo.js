@@ -3,28 +3,50 @@
  */
 
 var MongoClient = require('mongodb').MongoClient;
-var db;
+var dbConnection;
 var connected = false;
-const url = "mongodb://54.70.90.14:27017/test"
 
-
-MongoClient.connect(url, {
-    server: {
-        poolSize: 20
-    }
-},function(err, _db){
-    if (err) { throw new Error('Could not connect: '+err); }
-    db = _db;
-    connected = true;
-    console.log(connected +" is connected?");
-});
-
-
-var collection = function(name) {
-    if (!connected) {
-        throw new Error('Must connect to Mongo before calling "collection"');
-    }
-    return db.collection(name);
+var optionvalues = {
+    db : {
+        numberOfRetries : 5
+    },
+    server : {
+        auto_reconnect : true,
+        poolSize : 400,
+        socketOptions : {
+            connectTimeoutMS : 500
+        }
+    },
+    replSet : {},
+    mongos : {}
 };
 
-exports.collection = collection
+function initiatePool(url, callback) {
+    MongoClient.connect(url, optionvalues, function(err, db) {
+        if (err)
+            throw err;
+
+        dbConnection = db;
+        connected = true;
+        callback(dbConnection);
+    });
+}
+
+exports.connect = function(url, callback) {
+    if(!dbConnection)
+    {
+        initiatePool(url, callback)
+    }
+    else
+    {
+        callback(dbConnection);
+    }
+};
+
+exports.collection = function(name) {
+    if (!connected)
+    {
+        throw new Error('Must connect to Mongo before calling "collection"');
+    }
+    return dbConnection.collection(name);
+};

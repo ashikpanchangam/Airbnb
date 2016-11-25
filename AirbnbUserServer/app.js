@@ -5,7 +5,6 @@ var util = require('util');
 var mysql = require('./db/mysql');
 mysql.createConnectionPool(1000);
 
-
 var signUp = require('./services/signUp');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
@@ -50,9 +49,9 @@ cnn.on('ready', function() {
     });
   });
 
-  cnn.queue('deleteAccount_queue', function(q){
+  cnn.queue('adminLogin_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){
-      signUp.handle_deleteAccount_request(message, function(err,res){
+      signUp.handle_adminLogin_request(message, function(err,res){
         cnn.publish(m.replyTo, res, {
           contentType:'application/json',
           contentEncoding:'utf-8',
@@ -61,6 +60,55 @@ cnn.on('ready', function() {
       });
     });
   });
+
+
+  cnn.queue('saveHostDetails_queue', function(q){
+    q.subscribe(function(message, headers, deliveryInfo, m){
+      signUp.handle_saveHostDetails_request(message, function(err,res){
+        cnn.publish(m.replyTo, res, {
+          contentType:'application/json',
+          contentEncoding:'utf-8',
+          correlationId:m.correlationId
+        });
+      });
+    });
+  });
+
+  cnn.queue('saveCardDetails_queue', function(q){
+    q.subscribe(function(message, headers, deliveryInfo, m){
+      signUp.handle_saveCardDetails_request(message, function(err,res){
+        cnn.publish(m.replyTo, res, {
+          contentType:'application/json',
+          contentEncoding:'utf-8',
+          correlationId:m.correlationId
+        });
+      });
+    });
+  });
+
+  cnn.queue('deleteUserAccount_queue', function(q){
+    q.subscribe(function(message, headers, deliveryInfo, m){
+      signUp.handle_deleteUserAccount_request(message, function(err,res){
+        cnn.publish(m.replyTo, res, {
+          contentType:'application/json',
+          contentEncoding:'utf-8',
+          correlationId:m.correlationId
+        });
+      });
+    });
+  });
+
+    cnn.queue('deleteHostAccount_queue', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            signUp.handle_deleteHostAccount_request(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });  
   
 });
 
