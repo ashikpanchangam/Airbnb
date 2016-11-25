@@ -6,7 +6,7 @@ var dateFormat = require('dateformat');
 
 exports.getCurrentDateTime = function(){
     var now = new Date();
-    return dateFormat(now, "mm/dd/yyyy h:MM:ss");
+    return dateFormat(now, "yyyy-mm-dd h:MM:ss");
 };
 
 exports.getExpiryDateTime = function(duration){
@@ -18,5 +18,5 @@ exports.getExpiryDateTime = function(duration){
 
 exports.formatDate = function(dob) {
     var now = new Date(dob);
-    return dateFormat(now, "mm/dd/yyyy");
+    return dateFormat(now, "yyyy-mm-dd");
 };

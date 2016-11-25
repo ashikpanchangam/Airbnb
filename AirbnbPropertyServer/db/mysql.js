@@ -36,9 +36,9 @@ function operate(msg,type,callback) {
                                 ' AND accommodates >=' +  connection.escape(msg.guests) +
                                 ' AND price <= ' + connection.escape(msg.max_price) +
                                 ' AND price >= ' + connection.escape(msg.min_price) +
-                                ' AND (from_date IS NULL ' +
-                                    'OR from_date >' + connection.escape(msg.checkout) +
-                                    'OR to_date <' + connection.escape(msg.checkin)  + ')';
+                                ' AND (check_in IS NULL ' +
+                                    'OR check_in >' + connection.escape(msg.checkout) +
+                                    'OR check_out <' + connection.escape(msg.checkin)  + ')';
                         break;
                     case "reviewAndRating":
                         query = 'select review_property_id, count(*) review_num, avg(ratings) rating from review ' +

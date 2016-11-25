@@ -1,4 +1,3 @@
-
 SET foreign_key_checks = 0;
 drop database if exists airbnb_mysql;
 create database airbnb_mysql;
@@ -55,12 +54,12 @@ CREATE TABLE property (
 CREATE TABLE trip (
 	trip_id char(11) not null,
     trip_user_id char(11) not null,
+    trip_host_id char(11) not null,
     trip_property_id char(11) not null,
-    trip_bill_id char(11) not null,
     primary key (trip_id),
     constraint fk_trip_user_id foreign key (trip_user_id) references user (user_id) on delete cascade,
-    constraint fk_trip_property_id foreign key (trip_property_id) references property (property_id) on delete cascade,
-    constraint fk_trip_bill_id foreign key (trip_bill_id) references bill (bill_id) on delete cascade
+    constraint fk_trip_host_id foreign key (trip_host_id) references user (user_id) on delete cascade,
+    constraint fk_trip_property_id foreign key (trip_property_id) references property (property_id) on delete cascade
 );
 
 CREATE TABLE review (
@@ -77,13 +76,17 @@ CREATE TABLE bill (
     bill_total float(10,2),
     guests int,
     bill_date date,
-    from_date date,
-    to_date date,
+    check_in date,
+    check_out date,
     bill_property_id char(11) not null,
     bill_user_id char(11) not null,
+    bill_trip_id char(11) not null,
+    bill_host_id char(11) not null,
 	primary key (bill_id),
     constraint fk_bill_user_id foreign key (bill_user_id) references user (user_id) on delete cascade,
-    constraint fk_bill_property_id foreign key (bill_property_id) references property (property_id) on delete cascade
+    constraint fk_bill_host_id foreign key (bill_host_id) references user (user_id) on delete cascade,
+    constraint fk_bill_property_id foreign key (bill_property_id) references property (property_id) on delete cascade,
+    constraint fk_bill_trip_id foreign key (bill_trip_id) references trip (trip_id) on delete cascade
 );
 
 SET foreign_key_checks = 1;
