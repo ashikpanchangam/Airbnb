@@ -54,13 +54,13 @@ function operate(msg,type,callback) {
                             'where review_property_id=' + connection.escape(msg.property_id);
                         break;
                     case "addProperty":
-                        query = 'INSERT into property(property_id,category,address,city,state,zip_code,quantity,accommodates,price,description,property_host_id) VALUES (' +
+                        query = 'INSERT into property(property_id,category,address,city,state,zip_code,quantity,accommodates,price,description,property_host_id,property_approved) VALUES (' +
                             connection.escape(msg.property_id) +','+connection.escape(msg.category)
                             + ',' + connection.escape(msg.address) +','+connection.escape(msg.city)
                             + ',' + connection.escape(msg.state) +','+connection.escape(msg.zip_code)
                             + ',' + connection.escape(msg.quantity) +','+connection.escape(msg.accommodates)
                             + ',' + connection.escape(msg.price) +','+connection.escape(msg.description)
-                            + ',' + connection.escape(msg.property_host_id)
+                            + ',' + connection.escape(msg.property_host_id) +','+connection.escape(msg.property_approved)
                             + ')';
                         break;
                     case "addReview":

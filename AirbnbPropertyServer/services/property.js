@@ -69,6 +69,12 @@ function detail(msg, callback){
         case 'GET_PROPERTY_IMAGES':
             getPropertyImages(msg.content, callback)
             break
+        case 'ADD_PROPERTY_REVIEW_IMAGE':
+            addPropertyReviewImage(msg.content, callback)
+            break
+        case 'GET_PROPERTY_REVIEW_IMAGES':
+            getPropertyReviewImages(msg.content, callback)
+            break
         default:
             callback(null, {code: 404})
     }
@@ -100,6 +106,7 @@ var getReview = function(req, callback) {
 var addProperty = function(req, callback) {
     req.quantity = 1;
     req.property_id = guid();
+    msg.property_approved = 0
     mysql.operate(req, 'addProperty', function (result) {
         if (result == null) {
             callback(null, {})
@@ -133,6 +140,26 @@ var addPropertyImage = function(req, callback) {
 var getPropertyImages = function(req, callback) {
     const i = {
         id: req.property_id
+    }
+    mongo.getImage(i, function (docs) {
+        callback(null, docs)
+    })
+}
+
+var addPropertyReviewImage = function(req, callback) {
+    const i = {
+        id: req.property_id + "_" + req.review_id,
+        name: req.name,
+        data: req.data
+    }
+    mongo.storeImage(i, function () {
+        callback(null, {statusCode: 200})
+    })
+}
+
+var getPropertyReviewImages = function(req, callback) {
+    const i = {
+        id: req.property_id+ "_" + req.review_id,
     }
     mongo.getImage(i, function (docs) {
         callback(null, docs)
