@@ -7,7 +7,8 @@ var async = require("async");
 var listOfConnections = require("collections/list");
 var connectionPool;
 
-function getConnection(){
+function getConnection()
+{
     var connection    =   mysql.createConnection({
         connectionLimit : 20,
         host     : 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com',
@@ -22,15 +23,19 @@ function getConnection(){
 
 exports.createConnectionPool = function(noOfConnections){
     connectionPool = new listOfConnections();
-    for(var i=0;i<noOfConnections;i++){
+    for(var i=0;i<noOfConnections;i++)
+    {
         connectionPool.push(getConnection());
     }
 };
 
 var getConnectionFromConnectionPool = function (){
-    if(connectionPool.length == 0){
+    if(connectionPool.length == 0)
+    {
         return getConnection();
-    }else{
+    }
+    else
+    {
         return connectionPool.pop();
     }
 };
@@ -42,7 +47,8 @@ var releaseConnection = function(connection){
 exports.fetchData = function(callback,sqlQuery){
     var connection=getConnectionFromConnectionPool();
     connection.query(sqlQuery, function(err, rows, fields) {
-        if(err){
+        if(err)
+        {
             console.log("ERROR: " + err.message);
         }
         callback(err, rows);

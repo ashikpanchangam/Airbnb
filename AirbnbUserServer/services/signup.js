@@ -1,9 +1,9 @@
-nc/**
+/**
  * Created by ASHIK'S PC on 11/20/2016.
  */
 
-var mongo = require('./db/mongo');
-var mysql = require('./db/mysql');
+var mongo = require('../db/mongo');
+var mysql = require('../db/mysql');
 var bcrypt = require('bcrypt-nodejs');
 var mysqlModule = require('mysql');
 var mongoURL = "mongodb://54.70.90.14:27017/test";
@@ -11,89 +11,86 @@ var mongoURL = "mongodb://54.70.90.14:27017/test";
 exports.handle_signUp_request = function (msg, callback) {
     console.log("Using the 'signUp_queue'");                //subscribing to the signUp_queue
     var json_response = {};
+
     var email = msg.email;
     var first_name = msg.first_name;
     var last_name = msg.last_name;
     var password = msg.password;
     var dob = msg.dob;
     var is_host = false;
-    var query;
 
-    function guid()
+    function globalUserIdGenerator()
     {
-        function s4()
+        function digit1()
         {
             var value = Math.floor((Math.random() * 9) + 1);
             return value.toString();
         }
 
-        function s3()
+        function digit()
         {
             var value = Math.floor((Math.random() * 9) + 0);
             return value.toString();
         }
-        return s4() + s3() + s3() + '-' + s3() + s3() + '-' + s3() + s3() + s3() + s3();
+        return digit1() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit();
     }
 
-    var user_id = guid();
+    var user_id = globalUserIdGenerator();
+
+    var selectQuery;
+    var insertQuery;
 
     console.log(msg);                                       //print the message
-        
-    query = "INSERT into airbnb_mysql.user (user_id, email, first_name, last_name, password, dob, is_host) values(?,?,?,?,?,?,?)";
-    var inputParameters = [user_id,email,first_name,last_name,password,dob,is_host];
-    
-    var signUpQuery = mysqlModule.format(query, inputParameters);
-    mysql.fetchData(function (error,results) {
-        
-        if(error)
+
+    selectQuery = "select count(*) as resultCount from airbnb_mysql.user where email='"+email+"'";
+
+    insertQuery = "INSERT INTO airbnb_mysql.user (user_id, email, first_name, last_name, password, dob, is_host) " +
+        "VALUES ('"+user_id+"', '"+email+"', '"+first_name+"', '"+last_name+"', '"+password+"', '"+dob+"', '"+is_host+"')";
+
+    mysql.fetchData(function (error, results) {
+        if(results[0].resultCount == 0)
         {
-            console.log(error);
-            json_response = {
-                "statusCode" : 401,
-                "statusMessage" : "Unauthorized. Access is denied",
-                "results" : error.code
-            };
-            callback(null, json_response);
+            mysql.fetchData(function (error, results) {
+                if(error)
+                {
+                    json_response ={
+                        "statusCode" : 401,
+                        "results" : error.code
+                    };
+                    callback(null, json_response);
+                }
+                else
+                {
+                    json_response ={
+                        "statusCode" : 200,
+                        "results" : results,
+                        "statusMessage": "Successfully created an account"
+                    };
+                    callback(null, json_response);
+                }
+            }, insertQuery)
         }
         else
         {
-            console.log(results);
-            console.log(results.length);
-            if(results.length <= 0)
-            {
-                json_response = {
-                    "statusCode" : 200,
-                    "statusMessage" : "Successfully created an account",
-                    "results" : results
-                };
-                callback(null, json_response);
-            }
-            else    
-            {
-                json_response = {
-                    "statusCode" : 403,
-                    "statusMessage" : "Email already exists",
-                    "results" : results
-                };
-                callback(null, json_response);
-            }
+            json_response ={
+                "statusCode" : 403,
+                "results" : results,
+                "statusMessage": "Email exists already"
+            };
+            callback(null, json_response);
         }
-
-    }, signUpQuery)
+    }, selectQuery)
 };
 
-exports.handle_userLogin_request = function (msg, callback) {
-    console.log("Using the 'userLogin_queue'");                //subscribing to the userLogin_queue
+exports.handle_userLogin_request = function(msg, callback){
+
     var json_response = {};
     var email = msg.email;
     var password = msg.password;
-    var query;
-    
-    console.log(msg);
-    
-    query = "SELECT * from airbnb_mysql.user where email='"+ email +"'";
+
+    var query = "select * from airbnb_mysql.user where email='"+ email +"'";
+
     mysql.fetchData(function(error, results) {
-        console.log(error);
         if(error)
         {
             json_response ={
@@ -104,42 +101,41 @@ exports.handle_userLogin_request = function (msg, callback) {
         }
         else
         {
-            console.log(results);
-            console.log(results.length);
-            if(results.length > 0)
-            {
-                    bcrypt.compare(password, results[0].password, function(err,correctPassword) {
-
-                        if(correctPassword)
-                        {
-                            json_response ={
-                                "statusCode" : 200,
-                                "statusMessage" : "Success",
-                                "results" : results
-                            };
-                            callback(null, json_response);
-                        }
-                        else
-                        {
-                            json_response ={
-                                "statusCode" : 403,
-                                "statusMessage" : "Invalid login credentials"
-                            };
-                            callback(null, json_response);
-                        }
-                    });
-            }
-            else
+            if(results.length <= 0)
             {
                 json_response ={
                     "statusCode" : 403,
-                    "statusMessage" : "No Details Found"
+                    "statusMessage" : "Invalid email id"
                 };
                 callback(null, json_response);
+            }
+            else
+            {
+                bcrypt.compare(password, results[0].password, function(err,correctPassword) {
+
+                    if(correctPassword)
+                    {
+                        json_response ={
+                            "statusCode" : 200,
+                            "statusMessage" : "Successfully logged in",
+                            "results" : results
+                        };
+                        callback(null, json_response);
+                    }
+                    else
+                    {
+                        json_response ={
+                            "statusCode" : 403,
+                            "statusMessage" : "Invalid login credentials"
+                        };
+                        callback(null, json_response);
+                    }
+                });
             }
         }
     }, query);
 };
+
 
 exports.handle_becomeHost_request = function (msg, callback) {
     var json_response = {};
@@ -163,7 +159,7 @@ exports.handle_becomeHost_request = function (msg, callback) {
             json_response ={
                 "statusCode" : 200,
                 "results" : results,
-                "statusMessage" : "Success"
+                "statusMessage" : "Successfully became a host"
             };
             callback(null, json_response);
         }
@@ -291,8 +287,19 @@ exports.handle_saveHostDetails_request = function (msg, callback) {
     }, query);
 };
 
-exports.handle_saveCardDetails_request = function(msg, callback){
-  console.log("....Using the saveCardDetails_queue....");
+
+//TODO - Create a table for storing credit card details.
+exports.handle_addCreditCard_request = function(msg, callback){
+    console.log("....Using the saveCardDetails_queue....");
+    var json_response = {};
+
+    var user_id = msg.user_id;
+
+    var credit_card_number = msg.credit_card_number;
+    var credit_card_holder = msg.credit_card_holder;
+    var credit_card_expiry = msg.credit_card_expiry;
+
+
 
 };
 
@@ -330,11 +337,7 @@ exports.handle_deleteHostAccount_request = function (msg, callback) {
     var json_response = {};
     var user_id = msg.user_id;
 
-    var query = "UPDATE airbnb_mysql.user set is_host = '" + false + "', address = '" +null+ "'," +
-        " video = '"+ null +"', city = '" +null+ "', state = '" + null + "'," +
-        " zip_code = '" + null + "', phone_number = '" + null + "'," +
-        " location = '" + null + "', location_lat = '" + null + "'," +
-        " location_lng = '" + null + "' where user_id ='" + user_id + "'";
+    var query = "UPDATE airbnb_mysql.user set is_host = '" + false + "' where user_id ='" + user_id + "'";
 
     mysql.fetchData(function(error, results) {
         if(error)

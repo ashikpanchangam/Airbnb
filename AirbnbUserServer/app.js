@@ -6,9 +6,12 @@ var mysql = require('./db/mysql');
 mysql.createConnectionPool(1000);
 
 var signUp = require('./services/signUp');
+var host = require('./services/host');
+var user = require('./services/user');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
+console.log("---Server running---");
 
 cnn.on('ready', function() {
 
@@ -74,9 +77,9 @@ cnn.on('ready', function() {
     });
   });
 
-  cnn.queue('saveCardDetails_queue', function(q){
+  cnn.queue('addCreditCard_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){
-      signUp.handle_saveCardDetails_request(message, function(err,res){
+      signUp.handle_addCreditCard_request(message, function(err,res){
         cnn.publish(m.replyTo, res, {
           contentType:'application/json',
           contentEncoding:'utf-8',
@@ -108,7 +111,19 @@ cnn.on('ready', function() {
                 });
             });
         });
-    });  
+    });
+
+    cnn.queue('editUserProfile_queue', function(g) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            user.handle_editUserProfile_request(message, function (err,res) {
+                cnn.publish(m.replyTo,res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
   
 });
 
