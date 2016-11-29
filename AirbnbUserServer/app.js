@@ -15,9 +15,9 @@ console.log("---Server running---");
 
 cnn.on('ready', function() {
 
-    cnn.queue('signUp_queue', function (q) {
+    cnn.queue('userSignUp_queue', function (q) {
       q.subscribe(function (message, headers, deliveryInfo, m) {
-        signUp.handle_signUp_request(message, function (err, res) {
+        signUp.handle_userSignUp_request(message, function (err, res) {
           cnn.publish(m.replyTo, res, {
             contentType: 'application/json',
             contentEncoding: 'utf-8',
@@ -51,6 +51,18 @@ cnn.on('ready', function() {
       });
     });
   });
+
+    cnn.queue('adminSignUp_queue', function (q) {
+        q.subscribe(function (message, headers, deliveryInfo, m) {
+            signUp.handle_adminSignUp_request(message, function (err, res) {
+                cnn.publish(m.replyTo, res, {
+                    contentType: 'application/json',
+                    contentEncoding: 'utf-8',
+                    correlationId: m.correlationId
+                });
+            });
+        });
+    });  
 
   cnn.queue('adminLogin_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){

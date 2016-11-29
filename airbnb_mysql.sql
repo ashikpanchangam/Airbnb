@@ -23,6 +23,15 @@ CREATE TABLE user (
     primary key (user_id)
 );
 
+CREATE TABLE admin (
+    admin_id char(11) not null,
+    first_name varchar(25),
+    last_name varchar(25),
+    email varchar(25),
+    password varchar(25),
+    primary key (admin_id)
+);
+
 CREATE TABLE bid (
 	bid_id int not null auto_increment,
 	bid_amount float(11,2),

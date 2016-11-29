@@ -8,8 +8,8 @@ var bcrypt = require('bcrypt-nodejs');
 var mysqlModule = require('mysql');
 var mongoURL = "mongodb://54.70.90.14:27017/test";
 
-exports.handle_signUp_request = function (msg, callback) {
-    console.log("Using the 'signUp_queue'");                //subscribing to the signUp_queue
+exports.handle_userSignUp_request = function (msg, callback) {
+    console.log("Using the 'userSignUp_queue'");                //subscribing to the signUp_queue
     var json_response = {};
 
     var email = msg.email;
@@ -164,6 +164,79 @@ exports.handle_becomeHost_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, query)
+};
+
+
+exports.handle_adminSignUp_request = function (msg, callback) {
+    console.log("Using the 'adminSignUp_queue'");                //subscribing to the signUp_queue
+    var json_response = {};
+
+    var email = msg.email;
+    var first_name = msg.first_name;
+    var last_name = msg.last_name;
+    var password = msg.password;
+
+    function adminIdGenerator()
+    {
+        function digit1()
+        {
+            var value = Math.floor((Math.random() * 9) + 1);
+            return value.toString();
+        }
+
+        function digit()
+        {
+            var value = Math.floor((Math.random() * 9) + 0);
+            return value.toString();
+        }
+        return digit1() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit();
+    }
+
+    var admin_id = adminIdGenerator();
+
+    var selectQuery;
+    var insertQuery;
+
+    console.log(msg);                                       //print the message
+
+    selectQuery = "select count(*) as resultCount from airbnb_mysql.admin where email='"+email+"'";
+
+    insertQuery = "INSERT INTO airbnb_mysql.admin (admin_id, email, first_name, last_name, password) " +
+        "VALUES ('"+admin_id+"', '"+email+"', '"+first_name+"', '"+last_name+"', '"+password+"')";
+
+    mysql.fetchData(function (error, results) {
+        if(results[0].resultCount == 0)
+        {
+            mysql.fetchData(function (error, results) {
+                if(error)
+                {
+                    json_response ={
+                        "statusCode" : 401,
+                        "results" : error.code
+                    };
+                    callback(null, json_response);
+                }
+                else
+                {
+                    json_response ={
+                        "statusCode" : 200,
+                        "results" : results,
+                        "statusMessage": "Successfully created an account"
+                    };
+                    callback(null, json_response);
+                }
+            }, insertQuery)
+        }
+        else
+        {
+            json_response ={
+                "statusCode" : 403,
+                "results" : results,
+                "statusMessage": "Email exists already"
+            };
+            callback(null, json_response);
+        }
+    }, selectQuery)
 };
 
 exports.handle_adminLogin_request = function(msg, callback)
