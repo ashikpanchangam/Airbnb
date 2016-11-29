@@ -246,7 +246,7 @@ exports.handle_adminLogin_request = function(msg, callback)
     var email = msg.email;
     var password = msg.password;
 
-    var query = "select * from airbnb_mysql.user where email='"+ email +"'";
+    var query = "select * from airbnb_mysql.admin where email='"+ email +"'";
 
     mysql.fetchData(function(error, results) {
         if(error)
@@ -301,7 +301,7 @@ exports.handle_adminLogin_request = function(msg, callback)
     }, query);
 };
 
-exports.handle_saveHostDetails_request = function (msg, callback) {
+/*exports.handle_saveHostDetails_request = function (msg, callback) {
     var json_response = {};
     var user_id = msg.user_id;
     var video = msg.video;
@@ -358,23 +358,7 @@ exports.handle_saveHostDetails_request = function (msg, callback) {
             });
         }
     }, query);
-};
-
-
-//TODO - Create a table for storing credit card details.
-exports.handle_addCreditCard_request = function(msg, callback){
-    console.log("....Using the saveCardDetails_queue....");
-    var json_response = {};
-
-    var user_id = msg.user_id;
-
-    var credit_card_number = msg.credit_card_number;
-    var credit_card_holder = msg.credit_card_holder;
-    var credit_card_expiry = msg.credit_card_expiry;
-
-
-
-};
+};*/
 
 exports.handle_deleteUserAccount_request = function (msg, callback) {
     console.log("Using the 'deleteUserAccount_queue'");

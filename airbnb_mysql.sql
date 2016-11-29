@@ -20,6 +20,7 @@ CREATE TABLE user (
     credit_card_expiry date,
     credit_card_holder varchar(50),
     is_host boolean,
+    security_code char(3),
     primary key (user_id)
 );
 

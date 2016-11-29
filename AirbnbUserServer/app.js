@@ -77,7 +77,7 @@ cnn.on('ready', function() {
   });
 
 
-  cnn.queue('saveHostDetails_queue', function(q){
+  /*cnn.queue('saveHostDetails_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){
       signUp.handle_saveHostDetails_request(message, function(err,res){
         cnn.publish(m.replyTo, res, {
@@ -87,19 +87,7 @@ cnn.on('ready', function() {
         });
       });
     });
-  });
-
-  cnn.queue('addCreditCard_queue', function(q){
-    q.subscribe(function(message, headers, deliveryInfo, m){
-      signUp.handle_addCreditCard_request(message, function(err,res){
-        cnn.publish(m.replyTo, res, {
-          contentType:'application/json',
-          contentEncoding:'utf-8',
-          correlationId:m.correlationId
-        });
-      });
-    });
-  });
+  });*/
 
   cnn.queue('deleteUserAccount_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){
@@ -125,6 +113,7 @@ cnn.on('ready', function() {
         });
     });
 
+
     cnn.queue('editUserProfile_queue', function(g) {
         q.subscribe(function (message, headers, deliveryInfo, m) {
             user.handle_editUserProfile_request(message, function (err,res) {
@@ -136,7 +125,30 @@ cnn.on('ready', function() {
             });
         });
     });
+
+    cnn.queue('addCreditCard_queue', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            user.handle_addCreditCard_request(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('addCreditCard_queue', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            user.handle_getCreditCardDetails_request(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
   
 });
 
-  
