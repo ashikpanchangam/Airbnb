@@ -17,28 +17,42 @@ function guid() {
 
 function search(msg, callback){
     console.log("[PROPERTY SERVER] search ", msg)
+    var res = []
     mysql.operate(msg, 'searchProperty', function (result) {
         if (result === false) {
-            callback(null, {})
+            callback(null, [])
         } else {
             async.each(result,
                 function (property, cb) {
+                    //get number of review and avg rating
                     mysql.operate(property, 'reviewAndRating', function (r) {
+                        var review_rating = {}
                         if (r == false) {
-                            property.review_num = 0;
-                            property.rating = 0;
+                            review_rating.review_num = 0;
+                            review_rating.rating = 0;
                         } else {
-                            property.review_num = r.review_num;
-                            property.rating = r.rating;
+                            review_rating.review_num = r.review_num;
+                            review_rating.rating = r.rating;
                         }
-                        cb();
+
+                        //get photos of property
+                        getPropertyImages({property_id: property.property_id}, function(e, images) {
+                            var search_element = {
+                                property_detail: property,
+                                review_and_rating: review_rating,
+                                images: images
+                            }
+                            res.push(search_element)
+                            cb();
+                        })
+
                     })
 
                 },
 
                 function () {
-                    console.log('searchResult', result)
-                    callback(null, result)
+                    console.log('searchResult', res)
+                    callback(null, res)
                 }
             );
         }

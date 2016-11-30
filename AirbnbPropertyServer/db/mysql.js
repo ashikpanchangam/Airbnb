@@ -32,7 +32,6 @@ function operate(msg,type,callback) {
                         query = 'select * from (select * from property left join bill on property_id=bill_property_id) t ' +
                             'where category=' + connection.escape(msg.category) +
                                 ' AND city=' + connection.escape(msg.city) +
-                                ' AND state=' + connection.escape(msg.state) +
                                 ' AND accommodates >=' +  connection.escape(msg.guests) +
                                 ' AND price <= ' + connection.escape(msg.max_price) +
                                 ' AND price >= ' + connection.escape(msg.min_price) +
