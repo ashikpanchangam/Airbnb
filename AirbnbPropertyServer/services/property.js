@@ -104,14 +104,18 @@ var getReview = function(req, callback) {
 }
 
 var addProperty = function(req, callback) {
-    req.quantity = 1;
     req.property_id = guid();
-    msg.property_approved = 0
+    req.property_approved = 0
     mysql.operate(req, 'addProperty', function (result) {
         if (result == null) {
-            callback(null, {})
+            callback(null, {statusCode: 400})
         } else {
-            callback(null, {statusCode: 200})
+            callback(null, {
+                statusCode: 200,
+                content: {
+                    property_id: req.property_id
+                }
+            })
         }
     })
 }

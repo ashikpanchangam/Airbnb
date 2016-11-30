@@ -57,7 +57,7 @@ var storeImage = function(i, callback) {
     image.save(function (err) {
         if (err) throw err;
         // saved!
-        console.log('image saved!')
+        console.log('image saved! ', i.name)
         callback()
     })
 }
