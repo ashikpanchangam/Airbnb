@@ -76,6 +76,12 @@ function operate(msg,type,callback) {
                             ' order by revenue DESC' +
                             ' LIMIT 10';
                         break;
+                    case "top10CityRevenue":
+                        query = 'select city, sum(total) revenue from property,trip ' +
+                            ' group by city' +
+                            ' order by revenue DESC' +
+                            ' LIMIT 10';
+                        break;
                     default :
                         break;
                 }
@@ -89,7 +95,8 @@ function operate(msg,type,callback) {
 
                         if(type === "reviewAndRating" || type === "getProperty") {
                             callback(null, rows.length === 0 ? false : rows[0]);
-                        } else if(type === "searchProperty" || type === "getReview" || type === "top10PropertyRevenue") {
+                        } else if(type === "searchProperty" || type === "getReview" || type === "top10PropertyRevenue"
+                            || type === "top10CityRevenue") {
                             callback(null, rows.length === 0 ? false : rows);
                         } else {
                             console.log('Query type: ' + type);

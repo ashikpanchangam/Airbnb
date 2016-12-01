@@ -33,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="property.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="property.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/property.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="193" column="50" selection-start-line="193" selection-start-column="50" selection-end-line="193" selection-end-column="50" />
+            <state relative-caret-position="460">
+              <caret line="215" column="40" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="40" />
               <folding>
                 <element signature="e#3307#3498#0" expanded="false" />
                 <element signature="e#3542#3944#0" expanded="false" />
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mysql.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mysql.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/mysql.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="91" column="117" selection-start-line="91" selection-start-column="117" selection-end-line="91" selection-end-column="117" />
+            <state relative-caret-position="315">
+              <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -328,12 +328,12 @@
       <workItem from="1480469441009" duration="3072000" />
       <workItem from="1480533017013" duration="3772000" />
       <workItem from="1480558069334" duration="1110000" />
-      <workItem from="1480576042040" duration="2499000" />
+      <workItem from="1480576042040" duration="2682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110779000" />
+    <option name="totallyTimeSpent" value="110962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="6" />
@@ -501,14 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/mysql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="91" column="117" selection-start-line="91" selection-start-column="117" selection-end-line="91" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
@@ -519,8 +511,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/property.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="193" column="50" selection-start-line="193" selection-start-column="50" selection-end-line="193" selection-end-column="50" />
+        <state relative-caret-position="460">
+          <caret line="215" column="40" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="40" />
           <folding>
             <element signature="e#3307#3498#0" expanded="false" />
             <element signature="e#3542#3944#0" expanded="false" />
@@ -530,6 +522,14 @@
             <element signature="e#4657#4867#0" expanded="false" />
             <element signature="e#4923#5074#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -193,6 +193,9 @@ function analysis(msg, callback){
         case 'TOP_10_PROPERTY_REVENUE':
             top10PropertyRevenue(msg.content, callback)
             break
+        case 'TOP_10_CITY_REVENUE':
+            top10CityRevenue(msg.content, callback)
+            break
         default:
             callback(null, {statusCode: 400})
     }
@@ -200,6 +203,17 @@ function analysis(msg, callback){
 
 var top10PropertyRevenue = function(req, callback) {
     mysql.operate(req, 'top10PropertyRevenue', function (result) {
+        if (result === false) {
+            callback(null, [])
+        } else {
+            callback(null, result)
+        }
+    })
+}
+
+
+var top10CityRevenue = function(req, callback) {
+    mysql.operate(req, 'top10CityRevenue', function (result) {
         if (result === false) {
             callback(null, [])
         } else {
