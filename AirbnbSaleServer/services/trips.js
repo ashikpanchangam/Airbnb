@@ -6,9 +6,7 @@ var mysql = require('../db/mysql');
 var timeUtil = require('../helpers/timeutil');
 var generateID = require('../helpers/generateID');
 
-var CREATE_BILL = "INSERT INTO bill (bill_id, guests, bill_total, bill_date, check_in, check_out, bill_property_id, " +
-    "bill_host_id, bill_user_id, bill_trip_id) VALUES ('";
-var CREATE_TRIP = "INSERT INTO trip (trip_id, trip_user_id, trip_host_id, trip_property_id) VALUES ('";
+var CREATE_TRIP = "INSERT INTO trip (trip_id, guests, total, check_in, check_out, trip_user_id, trip_host_id, trip_property_id) VALUES ('";
 
 var GET_BILL_ID = "SELECT trip_bill_id as bill_id FROM trip WHERE trip_id = '";
 var EDIT_BILL = "UPDATE bill SET ";
@@ -25,22 +23,13 @@ var GET_TRIPS_USER = "SELECT trip_id, DATE_FORMAT(check_in,'%Y-%m-%d %h:%i:%s') 
 
 function createTrip(msg, callback){
     var trip_id = generateID.getId();
-    var insertTrip = CREATE_TRIP + trip_id + "', '" + msg.user_id + "', '" + msg.host_id + "', '" + msg.property_id + "')";
+    var insertTrip = CREATE_TRIP + trip_id + msg.guests + ", " + msg.total + timeUtil.formatDate(msg.check_in) + "', '" +
+        timeUtil.formatDate(msg.check_out) + "', '" + msg.user_id + "', '" + msg.host_id + "', '" + msg.property_id + "')";
     mysql.performOperation(insertTrip, function (err, result) {
         if(err){
             callback(null, {statusCode: 400});
         }
-        var bill_id = generateID.getId();
-        var bill_date = timeUtil.getCurrentDateTime();
-        var insertBill = CREATE_BILL + bill_id + "', " + msg.guests + ", " + msg.bill_total + ", '" + bill_date + "', '" +
-            timeUtil.formatDate(msg.check_in) + "', '" + timeUtil.formatDate(msg.check_out) + "', '" + msg.property_id + "', '" +
-            msg.host_id + "', '" + msg.user_id + "', '" + trip_id + "')";
-        mysql.performOperation(insertBill, function (err, result) {
-            if(err){
-                callback(null, {statusCode: 400});
-            }
-            callback(null, {statusCode: 200, data: {trip_id: trip_id}});
-        });
+        callback(null, {statusCode: 200, data: {trip_id: trip_id}});
     });
 }
 

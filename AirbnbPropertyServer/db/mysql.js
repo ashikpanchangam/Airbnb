@@ -29,7 +29,7 @@ function operate(msg,type,callback) {
                 var query;
                 switch(type) {
                     case "searchProperty":
-                        query = 'select * from (select * from property left join bill on property_id=bill_property_id) t ' +
+                        query = 'select * from (select * from property left join trip on property_id=trip_property_id) t ' +
                             'where category=' + connection.escape(msg.category) +
                                 ' AND city=' + connection.escape(msg.city) +
                                 ' AND accommodates >=' +  connection.escape(msg.guests) +

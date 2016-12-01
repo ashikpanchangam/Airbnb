@@ -66,6 +66,10 @@ CREATE TABLE property (
 
 CREATE TABLE trip (
 	trip_id char(11) not null,
+	total float(10,2),
+    guests int,
+    check_in date,
+    check_out date,
     trip_user_id char(11) not null,
     trip_host_id char(11) not null,
     trip_property_id char(11) not null,
@@ -86,11 +90,7 @@ CREATE TABLE review (
 
 CREATE TABLE bill (
 	bill_id char(11),
-    bill_total float(10,2),
-    guests int,
-    bill_date date,
-    check_in date,
-    check_out date,
+	bill_date date,
     bill_property_id char(11) not null,
     bill_user_id char(11) not null,
     bill_trip_id char(11) not null,
