@@ -61,7 +61,7 @@ function search(msg, callback){
 
 function detail(msg, callback){
 
-    console.log("[PROPERTY SERVER] getDetail ", msg)
+    console.log("[PROPERTY SERVER] detail ", msg)
 
     switch (msg.action)
     {
@@ -183,5 +183,31 @@ var getPropertyReviewImages = function(req, callback) {
         callback(null, docs)
     })
 }
+
+function analysis(msg, callback){
+
+    console.log("[PROPERTY SERVER] analysis ", msg)
+
+    switch (msg.action)
+    {
+        case 'TOP_10_PROPERTY_REVENUE':
+            top10PropertyRevenue(msg.content, callback)
+            break
+        default:
+            callback(null, {statusCode: 400})
+    }
+}
+
+var top10PropertyRevenue = function(req, callback) {
+    mysql.operate(req, 'top10PropertyRevenue', function (result) {
+        if (result === false) {
+            callback(null, [])
+        } else {
+            callback(null, result)
+        }
+    })
+}
+
 exports.search = search;
 exports.detail = detail;
+exports.analysis = analysis;

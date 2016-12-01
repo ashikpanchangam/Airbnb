@@ -70,6 +70,12 @@ function operate(msg,type,callback) {
                             + ',' + connection.escape(msg.review_property_id)
                             + ')';
                         break;
+                    case "top10PropertyRevenue":
+                        query = 'select property_id, *, sum(total) revenue from property,trip ' +
+                            ' group by property_id' +
+                            ' order by revenue DESC' +
+                            ' LIMIT 10';
+                        break;
                     default :
                         break;
                 }
@@ -83,7 +89,7 @@ function operate(msg,type,callback) {
 
                         if(type === "reviewAndRating" || type === "getProperty") {
                             callback(null, rows.length === 0 ? false : rows[0]);
-                        } else if(type === "searchProperty" || type === "getReview") {
+                        } else if(type === "searchProperty" || type === "getReview" || type === "top10PropertyRevenue") {
                             callback(null, rows.length === 0 ? false : rows);
                         } else {
                             console.log('Query type: ' + type);
