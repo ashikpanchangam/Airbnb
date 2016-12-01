@@ -26,25 +26,37 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            <state relative-caret-position="313">
+              <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="property.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="property.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/property.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="97" column="1" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
+            <state relative-caret-position="460">
+              <caret line="215" column="40" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="40" />
               <folding>
-                <element signature="n#!!block;n#search#0" expanded="false" />
-                <element signature="e#2124#2405#0" expanded="false" />
-                <element signature="e#2447#2638#0" expanded="false" />
-                <element signature="e#2682#2936#0" expanded="false" />
-                <element signature="e#2978#3178#0" expanded="false" />
+                <element signature="e#3307#3498#0" expanded="false" />
+                <element signature="e#3542#3944#0" expanded="false" />
+                <element signature="e#3986#4186#0" expanded="false" />
+                <element signature="e#4235#4423#0" expanded="false" />
+                <element signature="e#4473#4602#0" expanded="false" />
+                <element signature="e#4657#4867#0" expanded="false" />
+                <element signature="e#4923#5074#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mysql.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/mysql.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,8 +64,8 @@
       <file leaf-file-name="mongo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/mongo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+            <state relative-caret-position="505">
+              <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
               <folding>
                 <element signature="e#347#376#0" expanded="false" />
               </folding>
@@ -87,10 +99,10 @@
         <option value="$PROJECT_DIR$/services/items.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/db/redis.js" />
-        <option value="$PROJECT_DIR$/db/mysql.js" />
         <option value="$PROJECT_DIR$/db/mongo.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/services/property.js" />
+        <option value="$PROJECT_DIR$/db/mysql.js" />
       </list>
     </option>
   </component>
@@ -136,9 +148,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Problems" />
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -186,6 +195,9 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Problems" />
       </pane>
     </panes>
   </component>
@@ -311,11 +323,17 @@
       <workItem from="1479685752003" duration="1335000" />
       <workItem from="1479756114498" duration="3708000" />
       <workItem from="1479799423044" duration="4768000" />
+      <workItem from="1479854158714" duration="576000" />
+      <workItem from="1480317629723" duration="1617000" />
+      <workItem from="1480469441009" duration="3072000" />
+      <workItem from="1480533017013" duration="3772000" />
+      <workItem from="1480558069334" duration="1110000" />
+      <workItem from="1480576042040" duration="2682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98133000" />
+    <option name="totallyTimeSpent" value="110962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="6" />
@@ -353,12 +371,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../EbayItems/routes/index.js" />
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -462,51 +479,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/redis.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="165">
           <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#45#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/mysql.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/error/messages.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="68" column="77" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="235">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/mongo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+        <state relative-caret-position="505">
+          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
           <folding>
             <element signature="e#347#376#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/services/property.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="97" column="1" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
+        <state relative-caret-position="460">
+          <caret line="215" column="40" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="40" />
           <folding>
-            <element signature="n#!!block;n#search#0" expanded="false" />
-            <element signature="e#2124#2405#0" expanded="false" />
-            <element signature="e#2447#2638#0" expanded="false" />
-            <element signature="e#2682#2936#0" expanded="false" />
-            <element signature="e#2978#3178#0" expanded="false" />
+            <element signature="e#3307#3498#0" expanded="false" />
+            <element signature="e#3542#3944#0" expanded="false" />
+            <element signature="e#3986#4186#0" expanded="false" />
+            <element signature="e#4235#4423#0" expanded="false" />
+            <element signature="e#4473#4602#0" expanded="false" />
+            <element signature="e#4657#4867#0" expanded="false" />
+            <element signature="e#4923#5074#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
