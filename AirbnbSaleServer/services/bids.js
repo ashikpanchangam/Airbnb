@@ -4,7 +4,7 @@
 
 var mysql = require('../db/mysql');
 var timeUtil = require('../helpers/timeutil');
-var logger = require('../helpers/logger').getLogger();
+var logger = require('../helpers/logger');
 
 var INSERT_BID = "INSERT INTO bid (bid_amount, bid_time, bid_property_id, bid_user_id) VALUES (";
 var GET_BIDS = "SELECT bid_id, bid_amount, DATE_FORMAT(bid_time,'%Y-%m-%d %h:%i:%s') as bid_time," +
@@ -52,7 +52,7 @@ function postBid(msg, callback){
     var bid_amount = msg.bid_amount;
 
     var insertQuery = INSERT_BID + bid_amount + ",'" + bid_time + "','" + property_id + "','" + user_id +"')";
-    logger.trace("Place bid clicked for property "+ property_id + " by user "+ user_id);
+    logger.logToFile("Place bid clicked for property "+ property_id + " by user "+ user_id, false);
     mysql.performOperation(insertQuery, function (err, result) {
         if(err){
             callback(null, {statusCode: 400});

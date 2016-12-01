@@ -3,6 +3,7 @@
  */
 var mysql = require("mysql");
 var async = require("async");
+var dateformat = require('dateformat');
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,
@@ -53,7 +54,7 @@ function operate(msg,type,callback) {
                             'where review_property_id=' + connection.escape(msg.property_id);
                         break;
                     case "addProperty":
-                        query = 'INSERT into property(property_id,category,address,city,state,zip_code,country,accommodates,beds,bathrooms,amenities,price,description,property_host_id,property_approved) VALUES (' +
+                        query = 'INSERT into property(property_id,category,address,city,state,zip_code,country,accommodates,beds,bathrooms,amenities,price,description,property_host_id,property_approved,is_bidding,create_time) VALUES (' +
                             connection.escape(msg.property_id) +','+connection.escape(msg.category)
                             + ',' + connection.escape(msg.address) +','+connection.escape(msg.city)
                             + ',' + connection.escape(msg.state) +','+connection.escape(msg.zip_code)
@@ -62,6 +63,7 @@ function operate(msg,type,callback) {
                             + ',' + connection.escape(msg.amenities)
                             + ',' + connection.escape(msg.price) +','+connection.escape(msg.description)
                             + ',' + connection.escape(msg.property_host_id) +','+connection.escape(msg.property_approved)
+                            + ',' + connection.escape(msg.is_bidding) +','+ connection.escape(getCurrentDateTime())
                             + ')';
                         break;
                     case "addReview":
@@ -103,6 +105,11 @@ function operate(msg,type,callback) {
                 callback(result);
             }
         });
+}
+
+function getCurrentDateTime(){
+    var now = new Date();
+    return dateFormat(now, "yyyy-mm-dd h:MM:ss");
 }
 
 exports.operate = operate

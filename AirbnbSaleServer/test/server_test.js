@@ -19,7 +19,7 @@ var traceBidMsg = {action: 'TRACE_BID', content: {user_id: testUserId}};
 var getBidsForPropertyMsg = {action: 'GET_PROPERTY_BID', content: {user_id: testUserId, property_id: testPropertyId}};
 
 var createTripMsg = {action: 'CREATE_TRIP', content: {user_id: testUserId, property_id: testPropertyId, host_id: testHostId, guests: 2,
-                    bill_total: 120, check_in: '11/24/2016', check_out: '11/30/2016'}};
+                    total: 120, check_in: '11/24/2016', check_out: '11/30/2016'}};
 
 var editTripMsg = {action: 'EDIT_TRIP', content: {bill_total: 200, check_in: '12/02/2016', check_out: '12/04/2016', trip_id: testTripId}};
 var deleteTripMsg = {action: 'DELETE_TRIP', content: {trip_id: testTripId}};
@@ -42,7 +42,7 @@ function executeInsertTests() {
         if(err){
             console.log("Error "+ err);
         }
-        console.log('Result ' + JSON.stringify(result));
+        console.log('Result for trips' + JSON.stringify(result));
     });
 }
 

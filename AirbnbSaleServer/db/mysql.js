@@ -3,23 +3,32 @@
  */
 
 var mysql = require("mysql");
-var logger = require('../helpers/logger').getLogger();
+var logger = require('../helpers/logger');
+
+// var pool    =   mysql.createPool({
+//     connectionLimit : 20,
+//     host     : 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com',
+//     user     : 'cmpe273',
+//     password : 'cmpe273',
+//     database : 'airbnb_mysql',
+//     debug    :  false
+// });
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,
-    host     : 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com',
-    user     : 'cmpe273',
-    password : 'cmpe273',
+    host     : 'localhost',
+    user     : 'root',
+    password : 'password',
     database : 'airbnb_mysql',
     debug    :  false
 });
 
 function handleError(err) {
-    logger.error("Error getting connection: '"+ err);
+    logger.logToFile("Error getting connection: '"+ err, true);
 }
 
 function queryExecutionError(err, query){
-    logger.error("Query: '"+ query + "' execution failed. Error " + err);
+    logger.logToFile("Query: '"+ query + "' execution failed. Error " + err, true);
 }
 
 function performOperation(query, callback){

@@ -9,8 +9,19 @@ var test = require('./test/server_test');
 
 var conn = amqp.createConnection({host:'127.0.0.1'});
 
-//test.executeInsertTests();
-test.executeGetTests();
+var logger = require('./helpers/logger');
+
+test.executeInsertTests();
+//test.executeGetTests();
+
+// Sample log, writes log to file and MongoDB as well
+// For Page clicks data, key is page name
+logger.logToFile('Become a host clicked by user: username', false);
+logger.logToDb({category: 'page_clicks', key: 'HostPage', msg: 'Become a host clicked by user: username'});
+
+// For property clicks data, key is property ID
+logger.logToFile('Property 32312343 clicked by user: username', false);
+logger.logToDb({category: 'property_clicks', key: 32312343, msg: 'Property 32312343 clicked by user: username'});
 
 conn.on('ready', function(){
   console.log("listening on queues");

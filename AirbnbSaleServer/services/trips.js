@@ -23,7 +23,7 @@ var GET_TRIPS_USER = "SELECT trip_id, DATE_FORMAT(check_in,'%Y-%m-%d %h:%i:%s') 
 
 function createTrip(msg, callback){
     var trip_id = generateID.getId();
-    var insertTrip = CREATE_TRIP + trip_id + msg.guests + ", " + msg.total + timeUtil.formatDate(msg.check_in) + "', '" +
+    var insertTrip = CREATE_TRIP + trip_id + "', " + msg.guests + ", " + msg.total + ", '"+  timeUtil.formatDate(msg.check_in) + "', '" +
         timeUtil.formatDate(msg.check_out) + "', '" + msg.user_id + "', '" + msg.host_id + "', '" + msg.property_id + "')";
     mysql.performOperation(insertTrip, function (err, result) {
         if(err){

@@ -14,6 +14,8 @@
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "log4js": "^1.0.1",
+    "log4js-node-mongodb": "^2.2.0",
     "mocha": "^3.1.2",
     "mongodb": "^2.2.11",
     "morgan": "~1.7.0",
