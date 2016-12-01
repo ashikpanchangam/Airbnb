@@ -60,6 +60,8 @@ CREATE TABLE property (
 	description varchar(250),
     property_host_id char(11),
     property_approved int not null,
+    is_bidding boolean,
+    create_time datetime,
     primary key (property_id),
     constraint fk_property_host_id foreign key (property_host_id) references user (user_id) on delete cascade
 );
