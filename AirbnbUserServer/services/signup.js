@@ -2,11 +2,8 @@
  * Created by ASHIK'S PC on 11/20/2016.
  */
 
-var mongo = require('../db/mongo');
 var mysql = require('../db/mysql');
 var bcrypt = require('bcrypt-nodejs');
-var mysqlModule = require('mysql');
-var mongoURL = "mongodb://54.70.90.14:27017/test";
 
 exports.handle_userSignUp_request = function (msg, callback) {
     console.log("Using the 'userSignUp_queue'");                //subscribing to the signUp_queue
