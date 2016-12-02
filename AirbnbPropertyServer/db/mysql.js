@@ -31,7 +31,7 @@ function operate(msg,type,callback) {
                 switch(type) {
                     case "searchProperty":
                         var subQ = ''
-                        for (var i = 1; i < category.length; i++) {
+                        for (var i = 1; i < msg.category.length; i++) {
                                 subQ = subQ + ' OR category=' + connection.escape(msg.category[i].type)
                         }
 
