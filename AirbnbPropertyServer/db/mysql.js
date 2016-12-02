@@ -30,8 +30,13 @@ function operate(msg,type,callback) {
                 var query;
                 switch(type) {
                     case "searchProperty":
+                        var subQ = ''
+                        for (var i = 1; i < category.length; i++) {
+                                subQ = subQ + ' OR category=' + connection.escape(msg.category[i].type)
+                        }
+
                         query = 'select * from (select * from property left join trip on property_id=trip_property_id) t ' +
-                            'where category=' + connection.escape(msg.category) +
+                            'where (category=' + connection.escape(msg.category[0].type) + subQ + ')'
                                 ' AND city=' + connection.escape(msg.city) +
                                 ' AND accommodates >=' +  connection.escape(msg.guests) +
                                 ' AND price <= ' + connection.escape(msg.max_price) +
