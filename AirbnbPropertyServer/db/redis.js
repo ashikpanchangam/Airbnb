@@ -5,7 +5,7 @@ var redis = require('redis');
 var client = redis.createClient(6379, 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com');
 
 client.on('connect', function() {
-    console.log('redis connected');
+    console.log('redis connected'); 
 });
 
 var cacheProperty = function(property) {

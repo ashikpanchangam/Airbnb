@@ -5,8 +5,8 @@ var util = require('util');
 var mysql = require('./db/mysql');
 mysql.createConnectionPool(1000);
 
+var admin = require('./services/admin');
 var signUp = require('./services/signUp');
-var host = require('./services/host');
 var user = require('./services/user');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
@@ -141,6 +141,42 @@ cnn.on('ready', function() {
     cnn.queue('addCreditCard_queue', function(q){
         q.subscribe(function(message, headers, deliveryInfo, m){
             user.handle_getCreditCardDetails_request(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('listPropertyRequests_queue', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            admin.handle_listPropertyRequests_request(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('approveProperty_queue', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            admin.handle_approveProperty_request(message, function(err,res){
+                cnn.publish(m.replyTo, res, {
+                    contentType:'application/json',
+                    contentEncoding:'utf-8',
+                    correlationId:m.correlationId
+                });
+            });
+        });
+    });
+
+    cnn.queue('rejectProperty_queue', function(q){
+        q.subscribe(function(message, headers, deliveryInfo, m){
+            admin.handle_rejectProperty_request(message, function(err,res){
                 cnn.publish(m.replyTo, res, {
                     contentType:'application/json',
                     contentEncoding:'utf-8',
