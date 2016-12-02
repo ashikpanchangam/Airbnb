@@ -125,4 +125,4 @@ function getCurrentDateTime(){
     return dateFormat(now, "yyyy-mm-dd h:MM:ss");
 }
 
-exports.operate = operate
+exports.operate = operate;
