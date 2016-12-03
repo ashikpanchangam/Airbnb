@@ -14,7 +14,7 @@ CREATE TABLE user (
     phone_number varchar(12),
     dob date,
     email varchar(25),
-    password varchar(25),
+    password varchar(60),
     profile_img_url varchar(50),
     credit_card_number char(16),
     credit_card_expiry date,
