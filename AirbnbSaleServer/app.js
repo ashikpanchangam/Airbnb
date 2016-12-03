@@ -9,7 +9,7 @@ var mongo = require('./db/mongo');
 mongo.connect(function (err) {
     try{
         console.log("Mongod connected");
-        //test.executeGetTests();
+        test.executeGetTests();
     }catch (err){
         console.err("Couldn't connect to mongo db");
     }
@@ -25,11 +25,11 @@ var logger = require('./helpers/logger');
 
 // Sample log, writes log to file and MongoDB as well
 // For Page clicks data, key is page name
-logger.logToDb({category: 'page_clicks', data: {page_name: 'PropertyPage', msg: 'Become a host clicked by user: username'}});
-logger.logToDb({category: 'page_clicks', data: {page_name: 'PropertyPage', msg: 'Become a host clicked by user: username'}});
-logger.logToDb({category: 'page_clicks', data: {page_name: 'ProfilePage', msg: 'Become a host clicked by user: username'}});
-logger.logToDb({category: 'page_clicks', data: {page_name: 'HostPage', msg: 'Become a host clicked by user: username'}});
-logger.logToDb({category: 'page_clicks', data: {page_name: 'PropertyPage', msg: 'Become a host clicked by user: username'}});
+// logger.logToDb({category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212653'});
+// logger.logToDb({category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212600'});
+// logger.logToDb({category: 'page_clicks', key: 'ProfilePage', host_id: '345210000', user_id: '345212653'});
+// logger.logToDb({category: 'page_clicks', key: 'HostPage', host_id: '345210000', user_id: '345212600'});
+// logger.logToDb({category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212600'});
 
 // logger.logToFile('Become a host clicked by user: username', false);
 // logger.logToDb({category: 'page_clicks', key: 'PropertyPage', msg: 'Become a host clicked by user: username'});
@@ -43,14 +43,10 @@ logger.logToDb({category: 'page_clicks', data: {page_name: 'PropertyPage', msg: 
 // For property clicks data, key is property ID
 // logger.logToFile('Property 32312343 clicked by user: username', false);
 
-logger.logToDb({category: 'property_clicks', data: {property_id: '932-31-6417', msg: 'Property 932-31-6417 clicked by user: username'}});
-logger.logToDb({category: 'property_clicks', data: {property_id: '832-31-6417',  msg: 'Property 832-31-6417 clicked by user: username'}});
-logger.logToDb({category: 'property_clicks', data: {property_id: '722-31-6417', msg: 'Property 722-31-6417 clicked by user: username'}});
-logger.logToDb({category: 'property_clicks', data: {property_id: '722-31-6417', msg: 'Property 722-31-6417 clicked by user: username'}});
-
-logger.logToDb({category: 'property_clicks', data: {area: 'San Jose', msg: 'Property 932-31-6417 clicked by user: username'}});
-logger.logToDb({category: 'property_clicks', data: {area: 'San Jose',  msg: 'Property 832-31-6417 clicked by user: username'}});
-logger.logToDb({category: 'property_clicks', data: {area: 'Santa Clara', msg: 'Property 722-31-6417 clicked by user: username'}});
+// logger.logToDb({category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212653'});
+// logger.logToDb({category: 'property_clicks', key: '340212051',  host_id: '345210000', user_id: '345212653'});
+// logger.logToDb({category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212600'});
+// logger.logToDb({category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212600'});
 
 conn.on('ready', function () {
     console.log("listening on queues");

@@ -87,18 +87,39 @@ function executeGetTests(){
     //     }
     //     console.log('Generate bill ' + JSON.stringify(result));
     // });
-    hostAnalytics.handle_host_analytics({action: 'PAGE_CLICKS', content: {}}, function (err, result) {
+    hostAnalytics.handle_host_analytics({action: 'PAGE_CLICKS', content: {host_id: '345210000'}}, function (err, result) {
         if(err){
             console.log("Error "+ err);
         }
         console.log('Page clicks ' + JSON.stringify(result));
     });
 
-    hostAnalytics.handle_host_analytics({action: 'PROPERTY_CLICKS', content: {}}, function (err, result) {
+    hostAnalytics.handle_host_analytics({action: 'PROPERTY_CLICKS', content: {host_id: '345210000'}}, function (err, result) {
         if(err){
             console.log("Error "+ err);
         }
         console.log('Property clicks ' + JSON.stringify(result));
+    });
+
+    hostAnalytics.handle_host_analytics({action: 'AREA_CLICKS', content: {host_id: '345210000'}}, function (err, result) {
+        if(err){
+            console.log("Error "+ err);
+        }
+        console.log('Area clicks ' + JSON.stringify(result));
+    });
+
+    hostAnalytics.handle_host_analytics({action: 'REVIEW_DATA', content: {host_id: '345210000'}}, function (err, result) {
+        if(err){
+            console.log("Error "+ err);
+        }
+        console.log('Review data clicks ' + JSON.stringify(result));
+    });
+
+    hostAnalytics.handle_host_analytics({action: 'TRACE_USER', content: {host_id: '345210000'}}, function (err, result) {
+        if(err){
+            console.log("Error "+ err);
+        }
+        console.log('Trace user clicks ' + JSON.stringify(result));
     });
 }
 
