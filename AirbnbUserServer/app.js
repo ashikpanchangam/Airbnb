@@ -53,4 +53,3 @@ cnn.on('ready', function() {
   });
   
 });
-

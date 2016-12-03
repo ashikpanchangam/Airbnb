@@ -52,10 +52,46 @@ function editUserProfile(msg, callback) {
 
 }
 
+function getUserProfileDetails(msg, callback) {
+
+    console.log("Using the 'user_queue'");
+
+    var json_response = {};
+    var user_id = msg.user_id;
+
+    var selectQuery = "SELECT * FROM airbnb_mysql.user WHERE user_id = '"+user_id+"'";
+
+    mysql.fetchData(function(error, results) {
+
+        if (error)
+        {
+            json_response = {
+                "statusCode" : 401,
+                "statusMessage" : "Internal error occurred"
+            };
+            callback(null, json_response);
+        }
+        else if (results)
+        {
+            json_response = {
+                "statusCode" : 200,
+                "statusMessage" : "Successfully fetched user details"
+            };
+        }
+        else
+        {
+            json_response = {
+                "statusCode" : 403,
+                "statusMessage" : "Could not fetch the user details"
+            };
+        }
+    }, selectQuery);
+}
+
 function addCreditCard(msg, callback){
     console.log("Using the 'user_queue'");
-    var json_response = {};
 
+    var json_response = {};
     var user_id = msg.user_id;
 
     var credit_card_number = msg.credit_card_number;
@@ -112,10 +148,6 @@ function addCreditCard(msg, callback){
 function getCreditCardDetails(msg, callback) {
 
     console.log("Using the 'user_queue'");
-    var credit_card_number = msg.credit_card_number;
-    var credit_card_holder = msg.credit_card_holder;
-    var credit_card_expiry = msg.credit_card_expiry;
-    var security_code = msg.security_code;
 
     var user_id = msg.user_id;
 
@@ -202,6 +234,9 @@ exports.handle_user_queue = function(msg, callback) {
     switch (msg.action){
         case 'EDIT_USER_PROFILE':
             editUserProfile(msg.content, callback);
+            break;
+        case 'GET_USER_PROFILE_DETAILS':
+            getUserProfileDetails(msg.content, callback);
             break;
         case 'ADD_CREDIT_CARD':
             addCreditCard(msg.content, callback);
