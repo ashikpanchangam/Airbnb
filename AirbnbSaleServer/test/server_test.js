@@ -6,6 +6,7 @@ var bids = require('../services/bids');
 var trips = require('../services/trips');
 var bills = require('../services/bill');
 var hostAnalytics = require('../services/host_analytics');
+var log_data = require('../services/log_data');
 
 // Dummy Ids added
 var testUserId = '345212653';
@@ -39,12 +40,79 @@ function executeInsertTests() {
     // });
 
     // Testing to create a trip
-    trips.handle_trip_queue(createTripMsg, function (err, result) {
-        if(err){
-            console.log("Error "+ err);
-        }
-        console.log('Result for trips' + JSON.stringify(result));
+    // trips.handle_trip_queue(createTripMsg, function (err, result) {
+    //     if(err){
+    //         console.log("Error "+ err);
+    //     }
+    //     console.log('Result for trips' + JSON.stringify(result));
+    // });
+
+    // Testing for logging data
+    // Property click data
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212653'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
     });
+
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212051',  host_id: '345210000', user_id: '345212653'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
+
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212600'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
+
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212600'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
+
+    // Page click data
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212653'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
+
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212600'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
+
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'ProfilePage', host_id: '345210000', user_id: '345212653'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
+
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212600'}},
+        function (err, result) {
+            if(err){
+                console.log("Error logging "+ err);
+            }
+            console.log('Loggin result '+ JSON.stringify(result));
+        });
 }
 
 function executeGetTests(){
