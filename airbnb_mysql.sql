@@ -46,6 +46,7 @@ CREATE TABLE bid (
 
 CREATE TABLE property (
 	property_id char(11) not null,
+	property_name varchar(60),
     category varchar(25),
 	address varchar(30),
 	city varchar(25),

@@ -36,7 +36,7 @@ function operate(msg,type,callback) {
                         }
 
                         query = 'select * from (select * from property left join trip on property_id=trip_property_id) t ' +
-                            'where (category=' + connection.escape(msg.category[0].type) + subQ + ')'
+                            'where (category=' + connection.escape(msg.category[0].type) + subQ + ')'+
                                 ' AND city=' + connection.escape(msg.city) +
                                 ' AND accommodates >=' +  connection.escape(msg.guests) +
                                 ' AND price <= ' + connection.escape(msg.max_price) +
@@ -59,8 +59,8 @@ function operate(msg,type,callback) {
                             'where review_property_id=' + connection.escape(msg.property_id);
                         break;
                     case "addProperty":
-                        query = 'INSERT into property(property_id,category,address,city,state,zip_code,country,accommodates,beds,bathrooms,amenities,price,description,property_host_id,property_approved,is_bidding,create_time) VALUES (' +
-                            connection.escape(msg.property_id) +','+connection.escape(msg.category)
+                        query = 'INSERT into property(property_id,property_name,category,address,city,state,zip_code,country,accommodates,beds,bathrooms,amenities,price,description,property_host_id,property_approved,is_bidding,create_time) VALUES (' +
+                            connection.escape(msg.property_id) +','+ connection.escape(msg.property_name) +','+ connection.escape(msg.category)
                             + ',' + connection.escape(msg.address) +','+connection.escape(msg.city)
                             + ',' + connection.escape(msg.state) +','+connection.escape(msg.zip_code)
                             + ',' + connection.escape(msg.country) +','+connection.escape(msg.accommodates)

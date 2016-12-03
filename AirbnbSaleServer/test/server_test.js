@@ -5,6 +5,7 @@
 var bids = require('../services/bids');
 var trips = require('../services/trips');
 var bills = require('../services/bill');
+var hostAnalytics = require('../services/host_analytics');
 
 // Dummy Ids added
 var testUserId = '345212653';
@@ -48,43 +49,56 @@ function executeInsertTests() {
 
 function executeGetTests(){
     // Testing trace bids
-    bids.handle_bid_queue(traceBidMsg, function(err, result) {
+    // bids.handle_bid_queue(traceBidMsg, function(err, result) {
+    //     if(err){
+    //         console.log("Error "+ err);
+    //     }
+    //     console.log('Trace Bid ' + JSON.stringify(result));
+    // });
+    //
+    // // Testing bids for property
+    // bids.handle_bid_queue(getBidsForPropertyMsg, function(err, result) {
+    //     if(err){
+    //         console.log("Error "+ err);
+    //     }
+    //     console.log('Bids for property ' + JSON.stringify(result));
+    // });
+    //
+    // // Test to fetch all the trips for user
+    // trips.handle_trip_queue(getTripsForHostMsg, function (err, result) {
+    //     if(err){
+    //         console.log("Error "+ err);
+    //     }
+    //     console.log('Trips for host ' + JSON.stringify(result));
+    // });
+    //
+    // // Test to fetch all the trips for user
+    // trips.handle_trip_queue(getTripsForUserMsg, function (err, result) {
+    //     if(err){
+    //         console.log("Error "+ err);
+    //     }
+    //     console.log('Trips for user ' + JSON.stringify(result));
+    // });
+    //
+    // // Testing for fetching the bill
+    // bills.handle_bill_queue(generateBillMsg, function (err, result) {
+    //     if(err){
+    //         console.log("Error "+ err);
+    //     }
+    //     console.log('Generate bill ' + JSON.stringify(result));
+    // });
+    hostAnalytics.handle_host_analytics({action: 'PAGE_CLICKS', content: {}}, function (err, result) {
         if(err){
             console.log("Error "+ err);
         }
-        console.log('Trace Bid ' + JSON.stringify(result));
+        console.log('Page clicks ' + JSON.stringify(result));
     });
 
-    // Testing bids for property
-    bids.handle_bid_queue(getBidsForPropertyMsg, function(err, result) {
+    hostAnalytics.handle_host_analytics({action: 'PROPERTY_CLICKS', content: {}}, function (err, result) {
         if(err){
             console.log("Error "+ err);
         }
-        console.log('Bids for property ' + JSON.stringify(result));
-    });
-
-    // Test to fetch all the trips for user
-    trips.handle_trip_queue(getTripsForHostMsg, function (err, result) {
-        if(err){
-            console.log("Error "+ err);
-        }
-        console.log('Trips for host ' + JSON.stringify(result));
-    });
-
-    // Test to fetch all the trips for user
-    trips.handle_trip_queue(getTripsForUserMsg, function (err, result) {
-        if(err){
-            console.log("Error "+ err);
-        }
-        console.log('Trips for user ' + JSON.stringify(result));
-    });
-
-    // Testing for fetching the bill
-    bills.handle_bill_queue(generateBillMsg, function (err, result) {
-        if(err){
-            console.log("Error "+ err);
-        }
-        console.log('Generate bill ' + JSON.stringify(result));
+        console.log('Property clicks ' + JSON.stringify(result));
     });
 }
 

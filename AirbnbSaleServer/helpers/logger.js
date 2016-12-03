@@ -39,7 +39,7 @@ function logToDb(data, err){
     if(err){
 
     }else {
-        dbLogger.info({key: data.key, msg: data.msg});
+        dbLogger.info(data.data);
     }
 }
 
