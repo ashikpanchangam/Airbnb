@@ -6,6 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "amqp": "^0.2.6",
+    "async": "^2.1.4",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.2",
     "collections": "^5.0.5",

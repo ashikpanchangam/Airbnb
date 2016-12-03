@@ -12,9 +12,9 @@ exports.handle_userSignUp_request = function (msg, callback) {
     var email = msg.email;
     var first_name = msg.first_name;
     var last_name = msg.last_name;
-    var password = msg.password;
+    var password = bcrypt.hashSync(msg.password);
     var dob = msg.dob;
-    var is_host = false;
+    var is_host = 0;
 
     function globalUserIdGenerator()
     {

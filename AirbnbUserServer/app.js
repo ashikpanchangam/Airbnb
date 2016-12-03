@@ -17,6 +17,7 @@ cnn.on('ready', function() {
 
     cnn.queue('userSignUp_queue', function (q) {
       q.subscribe(function (message, headers, deliveryInfo, m) {
+          console.log("inside signup queue");
         signUp.handle_userSignUp_request(message, function (err, res) {
           cnn.publish(m.replyTo, res, {
             contentType: 'application/json',
@@ -30,6 +31,7 @@ cnn.on('ready', function() {
 
   cnn.queue('userLogin_queue', function(q){
     q.subscribe(function(message, headers, deliveryInfo, m){
+        console.log("request signin");
       signUp.handle_userLogin_request(message, function(err,res){
         cnn.publish(m.replyTo, res, {
           contentType:'application/json',
