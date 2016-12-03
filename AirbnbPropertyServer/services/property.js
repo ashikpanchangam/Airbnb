@@ -196,6 +196,9 @@ function analysis(msg, callback){
         case 'TOP_10_CITY_REVENUE':
             top10CityRevenue(msg.content, callback)
             break
+        case 'ADMIN':
+            admin(null, callback)
+            break
         default:
             callback(null, {statusCode: 400})
     }
@@ -219,6 +222,31 @@ var top10CityRevenue = function(req, callback) {
         } else {
             callback(null, result)
         }
+    })
+}
+
+var top10UserRevenue = function(req, callback) {
+    mysql.operate(req, 'top10UserRevenue', function (result) {
+        if (result === false) {
+            callback(null, [])
+        } else {
+            callback(null, result)
+        }
+    })
+}
+
+var admin = function(req, callback) {
+    var content = {}
+    top10PropertyRevenue(null, function (err, properties) {
+        content.propertyData = properties
+        top10CityRevenue(null, function (err, cities) {
+            content.cityData = cities
+            top10UserRevenue(null, function (err, users) {
+                content.userData = users
+
+                callback(null, {statusCode: 200, content: content})
+            })
+        })
     })
 }
 
