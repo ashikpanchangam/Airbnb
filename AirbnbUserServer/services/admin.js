@@ -4,9 +4,9 @@
 
 var mysql = require('../db/mysql');
 
-exports.handle_listPropertyRequests_request = function (msg, callback) {
+function listPropertyRequests(msg, callback) {
 
-    console.log("Using the 'listPropertyRequests_queue'");
+    console.log("Using the 'admin_queue'");
     var json_response = {};
     var property_approved = 0;
     
@@ -42,10 +42,11 @@ exports.handle_listPropertyRequests_request = function (msg, callback) {
             }
         }
     }, selectQuery);
-};
+}
 
-exports.handle_approveProperty_request = function (msg, callback) {
+function approveProperty(msg, callback) {
 
+    console.log("Using the 'admin_queue'");
     var json_response = {};
     var property_id = msg.property_id;
     var property_approved = 1;
@@ -70,10 +71,11 @@ exports.handle_approveProperty_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, updateQuery);
-};
+}
 
-exports.handle_rejectProperty_request = function (msg, callback) {
+function rejectProperty(msg, callback) {
 
+    console.log("Using the 'admin_queue'");
     var json_response = {};
     var property_id = msg.property_id;
     var property_approved = 2;
@@ -98,4 +100,21 @@ exports.handle_rejectProperty_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, updateQuery);
+}
+
+exports.handle_admin_queue = function(msg, callback) {
+    switch (msg.action){
+        case 'LIST_PROPERTY_REQUESTS':
+            listPropertyRequests(msg.content, callback);
+            break;
+        case 'APPROVE_PROPERTY':
+            approveProperty(msg.content, callback);
+            break;
+        case 'REJECT_PROPERTY':
+            rejectProperty(msg.content, callback);
+            break;
+        default:
+            callback(null, {statusCode: 400});
+            break;
+    }
 };

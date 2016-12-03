@@ -5,8 +5,8 @@
 var mysql = require('../db/mysql');
 var bcrypt = require('bcrypt-nodejs');
 
-exports.handle_userSignUp_request = function (msg, callback) {
-    console.log("Using the 'userSignUp_queue'");                //subscribing to the signUp_queue
+function userSignUp(msg, callback) {
+    console.log("Using the 'signUp_queue'");
     var json_response = {};
 
     var email = msg.email;
@@ -77,10 +77,11 @@ exports.handle_userSignUp_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, selectQuery)
-};
+}
 
-exports.handle_userLogin_request = function(msg, callback){
+function userLogin(msg, callback){
 
+    console.log("Using the 'signUp_queue'");
     var json_response = {};
     var email = msg.email;
     var password = msg.password;
@@ -131,16 +132,16 @@ exports.handle_userLogin_request = function(msg, callback){
             }
         }
     }, query);
-};
+}
 
 
-exports.handle_becomeHost_request = function (msg, callback) {
+function becomeHost(msg, callback) {
     var json_response = {};
     var query;
     var user_id = msg.user_id;
-    console.log("Using the 'becomeHost_queue'");
+    console.log("Using the 'signUp_queue'");
 
-    query = "UPDATE airbnb_mysql.user SET is_host='"+true+"' WHERE user_id='"+user_id+"'";
+    query = "UPDATE airbnb_mysql.user SET is_host='"+1+"' WHERE user_id='"+user_id+"'";
 
     mysql.fetchData(function(error, results) {
         if(error)
@@ -161,11 +162,11 @@ exports.handle_becomeHost_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, query)
-};
+}
 
 
-exports.handle_adminSignUp_request = function (msg, callback) {
-    console.log("Using the 'adminSignUp_queue'");                //subscribing to the signUp_queue
+function adminSignUp(msg, callback) {
+    console.log("Using the 'signUp_queue'");
     var json_response = {};
 
     var email = msg.email;
@@ -234,11 +235,11 @@ exports.handle_adminSignUp_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, selectQuery)
-};
+}
 
-exports.handle_adminLogin_request = function(msg, callback)
+function adminLogin(msg, callback)
 {
-    console.log("Using the adminLogin_request");
+    console.log("Using the 'signUp_queue'");
     var json_response = {};
     var email = msg.email;
     var password = msg.password;
@@ -296,7 +297,7 @@ exports.handle_adminLogin_request = function(msg, callback)
             }
         }
     }, query);
-};
+}
 
 /*exports.handle_saveHostDetails_request = function (msg, callback) {
     var json_response = {};
@@ -357,8 +358,8 @@ exports.handle_adminLogin_request = function(msg, callback)
     }, query);
 };*/
 
-exports.handle_deleteUserAccount_request = function (msg, callback) {
-    console.log("Using the 'deleteUserAccount_queue'");
+function deleteUserAccount(msg, callback) {
+    console.log("Using the 'signUp_queue'");
     var json_response = {};
     var query;
     var user_id = msg.user_id;
@@ -384,14 +385,14 @@ exports.handle_deleteUserAccount_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, query)
-};
+}
 
-exports.handle_deleteHostAccount_request = function (msg, callback) {
-    console.log("Using the 'deleteHostAccount_queue'");
+function deleteHostAccount(msg, callback) {
+    console.log("Using the 'signUp_queue'");
     var json_response = {};
     var user_id = msg.user_id;
 
-    var query = "UPDATE airbnb_mysql.user set is_host = '" + false + "' where user_id ='" + user_id + "'";
+    var query = "UPDATE airbnb_mysql.user set is_host = '" + 0 + "' where user_id ='" + user_id + "'";
 
     mysql.fetchData(function(error, results) {
         if(error)
@@ -412,4 +413,33 @@ exports.handle_deleteHostAccount_request = function (msg, callback) {
             callback(null, json_response);
         }
     }, query)
+}
+
+exports.handle_signUp_queue = function(msg, callback) {
+    switch (msg.action){
+        case 'USER_SIGN_UP':
+            userSignUp(msg.content, callback);
+            break;
+        case 'USER_LOGIN':
+            userLogin(msg.content, callback);
+            break;
+        case 'BECOME_HOST':
+            becomeHost(msg.content, callback);
+            break;
+        case 'ADMIN_SIGN_UP':
+            adminSignUp(msg.content, callback);
+            break;
+        case 'ADMIN_LOGIN':
+            adminLogin(msg.content, callback);
+            break;
+        case 'DELETE_USER_ACCOUNT':
+            deleteUserAccount(msg.content, callback);
+            break;
+        case 'DELETE_HOST_ACCOUNT':
+            deleteHostAccount(msg.content, callback);
+            break;
+        default:
+            callback(null, {statusCode: 400});
+            break;
+    }
 };

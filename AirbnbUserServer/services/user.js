@@ -5,9 +5,9 @@
 var mysql = require('../db/mysql');
 var bcrypt = require('bcrypt-nodejs');
 
-exports.handle_editUserProfile_request = function (msg, callback) {
+function editUserProfile(msg, callback) {
     
-    console.log('Using the editUserProfile_queue');
+    console.log("Using the 'user_queue'");
 
     var user_id = msg.user_id;
     var first_name = msg.first_name;
@@ -50,10 +50,10 @@ exports.handle_editUserProfile_request = function (msg, callback) {
         }
     }, updateQuery);
 
-};
+}
 
-exports.handle_addCreditCard_request = function(msg, callback){
-    console.log("....Using the saveCardDetails_queue....");
+function addCreditCard(msg, callback){
+    console.log("Using the 'user_queue'");
     var json_response = {};
 
     var user_id = msg.user_id;
@@ -107,10 +107,11 @@ exports.handle_addCreditCard_request = function(msg, callback){
             callback(null, json_response);
         }
     }, selectQuery)
-};
+}
 
-exports.handle_getCreditCardDetails_request = function (msg, callback) {
+function getCreditCardDetails(msg, callback) {
 
+    console.log("Using the 'user_queue'");
     var credit_card_number = msg.credit_card_number;
     var credit_card_holder = msg.credit_card_holder;
     var credit_card_expiry = msg.credit_card_expiry;
@@ -154,10 +155,11 @@ exports.handle_getCreditCardDetails_request = function (msg, callback) {
         }
     }, selectQuery);
 
-};
+}
 
-exports.handle_updateCreditCardDetails_request = function (msg, callback) {
+function updateCreditCardDetails(msg, callback) {
 
+    console.log("Using the 'user_queue'");
     var credit_card_number = msg.credit_card_number;
     var credit_card_holder = msg.credit_card_holder;
     var credit_card_expiry = msg.credit_card_expiry;
@@ -194,5 +196,24 @@ exports.handle_updateCreditCardDetails_request = function (msg, callback) {
             };
         }
     }, updateQuery);
+}
 
+exports.handle_user_queue = function(msg, callback) {
+    switch (msg.action){
+        case 'EDIT_USER_PROFILE':
+            editUserProfile(msg.content, callback);
+            break;
+        case 'ADD_CREDIT_CARD':
+            addCreditCard(msg.content, callback);
+            break;
+        case 'GET_CREDIT_CARD_DETAILS':
+            getCreditCardDetails(msg.content, callback);
+            break;
+        case 'UPDATE_CREDIT_CARD_DETAILS':
+            updateCreditCardDetails(msg.content, callback);
+            break;
+        default:
+            callback(null, {statusCode: 400});
+            break;
+    }
 };
