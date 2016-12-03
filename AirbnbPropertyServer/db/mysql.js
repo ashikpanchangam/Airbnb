@@ -78,14 +78,23 @@ function operate(msg,type,callback) {
                             + ')';
                         break;
                     case "top10PropertyRevenue":
-                        query = 'select property_id, *, sum(total) revenue from property,trip ' +
+                        query = 'select property_id as anme, sum(total) revenue from property,trip ' +
+                            ' where property_id=trip_property_id'
                             ' group by property_id' +
                             ' order by revenue DESC' +
                             ' LIMIT 10';
                         break;
                     case "top10CityRevenue":
-                        query = 'select city, sum(total) revenue from property,trip ' +
+                        query = 'select city as name, sum(total) revenue from property,trip ' +
+                            ' where property_id=trip_property_id'
                             ' group by city' +
+                            ' order by revenue DESC' +
+                            ' LIMIT 10';
+                        break;
+                    case "top10UserRevenue":
+                        query = 'select email as name, sum(total) revenue from user,trip ' +
+                            ' where user_id=trip_host_id'
+                            ' group by user_id' +
                             ' order by revenue DESC' +
                             ' LIMIT 10';
                         break;
@@ -103,7 +112,7 @@ function operate(msg,type,callback) {
                         if(type === "reviewAndRating" || type === "getProperty") {
                             callback(null, rows.length === 0 ? false : rows[0]);
                         } else if(type === "searchProperty" || type === "getReview" || type === "top10PropertyRevenue"
-                            || type === "top10CityRevenue") {
+                            || type === "top10CityRevenue" || type === "top10UserRevenue") {
                             callback(null, rows.length === 0 ? false : rows);
                         } else {
                             console.log('Query type: ' + type);
