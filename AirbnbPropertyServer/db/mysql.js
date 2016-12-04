@@ -59,7 +59,7 @@ function operate(msg,type,callback) {
                             'where review_property_id=' + connection.escape(msg.property_id);
                         break;
                     case "addProperty":
-                        query = 'INSERT into property(property_id,property_name,category,address,city,state,zip_code,country,accommodates,beds,bathrooms,amenities,price,description,property_host_id,property_approved,is_bidding,create_time) VALUES (' +
+                        query = 'INSERT into property(property_id,property_name,category,address,city,state,zip_code,country,accommodates,beds,bathrooms,amenities,price,description,property_host_id,property_approved,is_bidding,create_time,lat,lng) VALUES (' +
                             connection.escape(msg.property_id) +','+ connection.escape(msg.property_name) +','+ connection.escape(msg.category)
                             + ',' + connection.escape(msg.address) +','+connection.escape(msg.city)
                             + ',' + connection.escape(msg.state) +','+connection.escape(msg.zip_code)
@@ -69,6 +69,7 @@ function operate(msg,type,callback) {
                             + ',' + connection.escape(msg.price) +','+connection.escape(msg.description)
                             + ',' + connection.escape(msg.property_host_id) +','+connection.escape(msg.property_approved)
                             + ',' + connection.escape(msg.is_bidding) +','+ connection.escape(getCurrentDateTime())
+                            + ',' + connection.escape(msg.lat) +','+ connection.escape(msg.lng)
                             + ')';
                         break;
                     case "addReview":
