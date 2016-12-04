@@ -6,7 +6,7 @@ var mysql = require('../db/mysql');
 var timeUtil = require('../helpers/timeutil');
 var logger = require('../helpers/logger');
 
-var INSERT_BID = "INSERT INTO bid (bid_amount, bid_time, bid_property_id, bid_user_id) VALUES (";
+var INSERT_BID = "INSERT INTO bid (bid_amount, bid_time, bid_check_in, bid_check_out, bid_guests, bid_property_id, bid_user_id) VALUES (";
 var GET_BIDS = "SELECT bid_id, bid_amount, DATE_FORMAT(bid_time,'%Y-%m-%d %h:%i:%s') as bid_time," +
     "bid_property_id as property_id, bid_user_id as user_id FROM bid WHERE ";
 
@@ -20,7 +20,8 @@ function traceBid(msg, callback){
         var rows = result.rows;
         for(var i=0; i<rows.length; i++){
             var bid = {bid_id: rows[i].bid_id, property_id: rows[i].property_id,
-                user_id: rows[i].user_id, bid_time: rows[i].bid_time, bid_amount: rows[i].bid_amount};
+                user_id: rows[i].user_id, bid_time: rows[i].bid_time, bid_amount: rows[i].bid_amount, check_in: rows[i].bid_check_in,
+                check_out: rows[i].bid_check_out, guests: rows[i].bid_guests};
             data.push(bid);
         }
         callback(null, {statusCode: 200, data:data});
@@ -38,7 +39,8 @@ function getBidsForProperty(msg, callback){
         var rows = result.rows;
         for(var i=0; i<rows.length; i++){
             var bid = {bid_id: rows[i].bid_id, property_id: rows[i].property_id,
-                user_id: rows[i].user_id, bid_time: rows[i].bid_time, bid_amount: rows[i].bid_amount};
+                user_id: rows[i].user_id, bid_time: rows[i].bid_time, bid_amount: rows[i].bid_amount, check_in: rows[i].bid_check_in,
+                check_out: rows[i].bid_check_out, guests: rows[i].bid_guests};
             data.push(bid);
         }
         callback(null, {statusCode: 200, data:data});
@@ -50,8 +52,12 @@ function postBid(msg, callback){
     var property_id = msg.property_id;
     var bid_time = timeUtil.getCurrentDateTime();
     var bid_amount = msg.bid_amount;
+    var bid_check_in = msg.check_in;
+    var bid_check_out = msg.check_out;
+    var bid_guests = msg.guests;
 
-    var insertQuery = INSERT_BID + bid_amount + ",'" + bid_time + "','" + property_id + "','" + user_id +"')";
+    var insertQuery = INSERT_BID + bid_amount + ",'" + bid_time + "','" + bid_check_in + "','" + bid_check_out
+        + "', " + bid_guests + ", '" + property_id + "','" + user_id +"')";
     logger.logToFile("Place bid clicked for property "+ property_id + " by user "+ user_id, false);
     mysql.performOperation(insertQuery, function (err, result) {
         if(err){
