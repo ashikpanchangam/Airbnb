@@ -3,7 +3,7 @@
  */
 var mysql = require("mysql");
 var async = require("async");
-var dateformat = require('dateformat');
+var dateFormat = require('dateformat');
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,

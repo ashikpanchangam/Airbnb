@@ -5,7 +5,8 @@
 var MongoClient = require('mongodb').MongoClient;
 var db;
 var connected = false;
-const url = "mongodb://ec2-54-212-241-30.us-west-2.compute.amazonaws.com/AirbnbMongo"
+const url = "mongodb://ec2-54-212-241-30.us-west-2.compute.amazonaws.com/AirbnbMongo";
+// const url = "mongodb://ec2-54-149-150-222.us-west-2.compute.amazonaws.com/AirbnbMongo";
 
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -39,7 +40,7 @@ var schema = new mongoose.Schema({
     id: String,
     img: {
         name: String,
-        data: Buffer,
+        data: String,
         contentType: String}
 })
 var Image = mongoose.model('Image', schema);

@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt-nodejs');
 function editUserProfile(msg, callback) {
     
     console.log("Using the 'user_queue'");
-
+    console.log(msg);
     var user_id = msg.user_id;
     var first_name = msg.first_name;
     var last_name = msg.last_name;
@@ -25,7 +25,6 @@ function editUserProfile(msg, callback) {
         + "' where user_id ='" + user_id + "'";
 
     mysql.fetchData(function(error, results) {
-
         if (error)
         {
             json_response = {
@@ -34,12 +33,17 @@ function editUserProfile(msg, callback) {
             };
             callback(null, json_response);
         } 
-        else if (results)
+        else if (results.affectedRows > 0)
         {
-            json_response = {
-                "statusCode" : 200,
-                "statusMessage" : "Successfully saved the changes"
-            };
+            var selectQuery = "SELECT * FROM airbnb_mysql.user WHERE user_id = '"+user_id+"'";
+            mysql.fetchData(function(error, results) {
+                json_response = {
+                    "statusCode": 200,
+                    "statusMessage": "Successfully saved the changes",
+                    "updatedUser": results
+                };
+                callback(null, json_response);
+            }, selectQuery);
         }
         else
         {
@@ -47,6 +51,7 @@ function editUserProfile(msg, callback) {
                 "statusCode" : 403,
                 "statusMessage" : "Could not update the details"
             };
+            callback(null, json_response);
         }
     }, updateQuery);
 
@@ -77,6 +82,7 @@ function getUserProfileDetails(msg, callback) {
                 "statusCode" : 200,
                 "statusMessage" : "Successfully fetched user details"
             };
+            callback(null, json_response);
         }
         else
         {
@@ -84,6 +90,7 @@ function getUserProfileDetails(msg, callback) {
                 "statusCode" : 403,
                 "statusMessage" : "Could not fetch the user details"
             };
+            callback(null, json_response);
         }
     }, selectQuery);
 }

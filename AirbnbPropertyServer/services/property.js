@@ -94,6 +94,19 @@ function detail(msg, callback){
     }
 }
 
+// var getInfo = function(req, callback) {
+//     mysql.operate(req, 'getProperty', function (result) {
+//         if (result === false) {
+//             callback(null, {})
+//         } else {
+//             TODO: store to redis for caching
+//             redis.cacheProperty(result)
+//
+//             callback(null, result)
+//         }
+//     })
+// }
+
 var getInfo = function(req, callback) {
     mysql.operate(req, 'getProperty', function (result) {
         if (result === false) {
@@ -102,7 +115,32 @@ var getInfo = function(req, callback) {
             //TODO: store to redis for caching
             redis.cacheProperty(result)
 
-            callback(null, result)
+            mysql.operate(result, 'reviewAndRating', function (r) {
+                var review_rating = {}
+                if (r == false) {
+                    review_rating.review_num = 0;
+                    review_rating.rating = 0;
+                } else {
+                    review_rating.review_num = r.review_num;
+                    review_rating.rating = r.rating;
+                }
+
+                //get photos of property
+                getPropertyImages({property_id: result.property_id}, function(e, images) {
+
+                    getReview(result, function(err, reviews) {
+                        var property = {
+                            property_detail: result,
+                            review_and_rating: review_rating,
+                            images: images,
+                            reviews: reviews
+                        }
+                        callback(null, property)
+                    })
+
+                })
+
+            })
         }
     })
 }
