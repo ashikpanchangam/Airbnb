@@ -11,8 +11,22 @@ function digit() {
     return Math.floor(Math.random() * 10);
 }
 
+// function guid() {
+//     return digit() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit()
+// }
+
 function guid() {
-    return digit() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit()
+    function digit1() {
+        var value = Math.floor((Math.random() * 9) + 1);
+        return value.toString();
+    }
+
+    function digit() {
+        var value = Math.floor((Math.random() * 9) + 0);
+        return value.toString();
+    }
+
+    return digit1() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit();
 }
 
 function search(msg, callback){
@@ -68,6 +82,9 @@ function detail(msg, callback){
         case 'GET_INFO':
             getInfo(msg.content, callback)
             break
+        case 'GET_USER_PROPERTIES':
+            getUserProperties(msg.content, callback)
+            break
         case 'GET_REVIEW':
             getReview(msg.content, callback)
             break
@@ -106,6 +123,17 @@ function detail(msg, callback){
 //         }
 //     })
 // }
+
+var getUserProperties = function(req, callback) {
+    mysql.operate(req, 'getUserProperties', function (result) {
+        if (result === false) {
+            callback(null, {})
+        } else {
+            callback(null, result)
+        }
+    })
+}
+
 
 var getInfo = function(req, callback) {
     mysql.operate(req, 'getProperty', function (result) {

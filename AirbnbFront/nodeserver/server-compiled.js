@@ -36,6 +36,11 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
+// var redis   = require("redis");
+// var client  = redis.createClient();
+// var session = require('express-session');
+// var redisStore = require('connect-redis')(session);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var inspect = require('eyespect').inspector();
@@ -59,6 +64,14 @@ app.use((0, _expressSession2.default)({
   saveUninitialized: false,
   resave: true
 }));
+
+// app.use(session({
+//     secret: 'ssshhhhh',
+//     // create new redis store.
+//     store: new redisStore({ host: 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com', port: 6379, client: client,ttl :  260}),
+//     saveUninitialized: false,
+//     resave: false
+// }));
 
 app.use(_passport2.default.initialize());
 app.use(_passport2.default.session());
@@ -226,6 +239,9 @@ app.post('/signup', serverSideLogic.signUp);
 app.get('/getSession', serverSideLogic.getSession);
 app.get('/logout', serverSideLogic.doLogout);
 app.post('/editProfile', serverSideLogic.editProfile);
+app.post('/createTrip', serverSideLogic.createTrip);
+app.get('/getUserTrips', serverSideLogic.getUserTrips);
+app.get('/getUserListings', serverSideLogic.getUserListings);
 
 
 app.get('*', function (request, response) {

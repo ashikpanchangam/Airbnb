@@ -39,20 +39,20 @@ class Summary extends React.Component {
 
       this.setState({
         listing: {
-          city: hostInfo.data.city,
-          state: hostInfo.data.state,
-          country: hostInfo.data.country,
-          name: hostInfo.data.property_name,
-          picture_url: hostInfo.data.picture_url,
+          city: hostInfo.data.property_detail.city,
+          state: hostInfo.data.property_detail.state,
+          country: hostInfo.data.property_detail.country,
+          name: hostInfo.data.property_detail.property_name,
+          picture_url: hostInfo.data.images[1].img.data,
           user: {
-            id: hostInfo.data.property_host_id,
+            id: hostInfo.data.property_detail.property_host_id,
           },
-          hosts: hostInfo.data.hosts,
-          bedrooms: hostInfo.data.bedrooms,
-          beds: hostInfo.data.beds,
-          person_capacity: hostInfo.data.accommodates,
-          reviews_count: hostInfo.data.reviews_count,
-          room_type:hostInfo.data.category,
+          hosts: hostInfo.data.property_detail.hosts,
+          bedrooms: hostInfo.data.property_detail.bedrooms,
+          beds: hostInfo.data.property_detail.beds,
+          person_capacity: hostInfo.data.property_detail.accommodates,
+          reviews_count: hostInfo.data.review_and_rating.review_num,
+          room_type:hostInfo.data.property_detail.category,
         }
       })
     });
@@ -64,7 +64,7 @@ class Summary extends React.Component {
           <div>
             <div style={{backgroundColor:"#fff", paddingTop:"25px", paddingBottom:"25px", borderBottom:'solid 1px #DCE0E0'}} className="row about-body">
               <div className="col-xs-12 col-sm-4" style={{paddingBottom:"25px"}}>
-                <img className="center-block" style={{borderRadius: '100%', height: '85px', width: '85px'}}src={this.state.listing.hosts !== undefined && this.state.listing.hosts[0].picture_url} />
+                <img className="center-block" style={{borderRadius: '100%', height: '85px', width: '85px'}}src={this.state.listing !== undefined && this.state.listing.picture_url} />
                 <div style={{textAlign: "center", fontSize: '13px', color: '#767676', paddingTop: '5px'}} className="hidden-xs">{this.state.listing.hosts !== undefined && this.state.listing.hosts[0].first_name}</div>
               </div>
 

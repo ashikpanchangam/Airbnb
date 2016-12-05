@@ -10,6 +10,11 @@ import Footer from './footer/Footer';
 
 import Profile from './profile/Profile';
 import EditProfile from './profile/EditProfile';
+import UserListings from './profile/UserListings';
+import AllBills from './profile/AllBills';
+import AllListings from './profile/AllListings';
+import AllTrips from './profile/AllTrips';
+import Bill from './profile/Bill';
 import BecomeAHost from './become-a-host/BecomeAHost';
 import BecomeAHostHome from './become-a-host/BecomeAHostHome';
 import Room from './become-a-host/steps/stepOne/Room';
@@ -27,6 +32,7 @@ import Rooms from './rooms/Rooms';
 import Inbox from './profile/Inbox.js';
 import User from './user/User.js';
 import HostAnalytics from './profile/hostAnalytics';
+import AdminAnalytics from './profile/adminAnalytics';
 
 
 injectTapEventPlugin();
@@ -48,6 +54,7 @@ ReactDOM.render((
 		<Route path="/" component={App}>
 			<IndexRoute component={Home} />
 			<Route path="/hostAnalytics" component={HostAnalytics} />
+			<Route path="/adminAnalytics" component={AdminAnalytics} />
 			<Route path="/login" component={LoginModal} />
 			<Route path="/signup" component={SignUpModal} />
 			<Route path="/host" component={BecomeAHost}>
@@ -63,10 +70,15 @@ ReactDOM.render((
 			<Route path="/host/highlights" component={Highlights} />
 			<Route path="/profile" component={Profile} />
 			<Route path ="/profile/edit" component={EditProfile} />
+			<Route path ="/profile/listings" component={UserListings} />
+			<Route path ="/bills" component={AllBills} />
+			<Route path ="/invoice(/:id)" component={Bill} />
 			<Route path="/rooms(/:rid)" component={Rooms} />
 			<Route path="/search-results" component={SearchResults} />
 			<Route path="/inbox" component={Inbox} />
 			<Route path="/user(/:id)" component={User} />
+			<Route path="/trips" component={AllTrips} />
+			<Route path="/listings" component={AllListings} />
 		</Route>
 
 </Router>

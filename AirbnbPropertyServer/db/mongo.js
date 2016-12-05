@@ -11,7 +11,9 @@ const url = "mongodb://ec2-54-212-241-30.us-west-2.compute.amazonaws.com/AirbnbM
 var fs = require('fs');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
 // img path
+
 var imgPath = './image.png';
 
 // MongoClient.connect(url, {
@@ -35,7 +37,13 @@ var imgPath = './image.png';
 //
 // exports.collection = collection
 
-mongoose.connect(url)
+var options = {
+    server: { poolSize: 50 }
+}
+
+mongoose.connect(url, options)
+
+// mongoose.connect(url)
 var schema = new mongoose.Schema({
     id: String,
     img: {

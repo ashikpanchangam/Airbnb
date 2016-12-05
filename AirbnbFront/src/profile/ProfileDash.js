@@ -25,12 +25,13 @@ const style = {
             <div className="profileDash" style={style}>
               <span>
                 <a style={style.item} href='/profile'>Dashboard</a>
-                <a style={style.item} href="/inbox" >Inbox</a>
-                <a style={style.item} href="/rooms" >Your Listings</a>
+                {/*<a style={style.item} href="/inbox" >Inbox</a>*/}
+                <a style={style.item} href="/listings" >Your Listings</a>
                 <a style={style.item} href="/trips/current" >Your Trips</a>
-                <Link style={style.item} to="/profile/edit">Profile</Link>
-                <a style={style.item} href="/users/notifications" >Account</a>
-                <a style={style.item} href="/invite" >Travel Credit</a>
+                <Link style={style.item} to="/profile/edit">Edit Profile</Link>
+                {/*<a style={style.item} href="/users/notifications" >Account</a>*/}
+                {/*<a style={style.item} href="/invite" >Travel Credit</a>*/}
+                <a style={style.item} href="/invite" >Analytics</a>
               </span>
             </div>
           </div>

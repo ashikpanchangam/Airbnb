@@ -19,7 +19,7 @@ class Rooms extends Component {
     console.log("props", this.props.params.rid);
         return (
           <div>
-            <Header rid={this.props && this.props.params.rid}/>
+            <Header rid={this.props && this.props.params.rid} />
             <Summary rid={this.props && this.props.params.rid}/>
             <About rid={this.props && this.props.params.rid}/>
             <Footer rid={this.props && this.props.params.rid}/>
