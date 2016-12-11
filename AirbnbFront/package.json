@@ -23,7 +23,7 @@
     "jwt-decode": "^2.1.0",
     "massive": "^2.5.0",
     "material-ui": "^0.16.4",
-    "moment": "^2.14.1",
+    "moment": "^2.11.1",
     "node-sass": "^3.8.0",
     "normalize.css": "^4.2.0",
     "npm": "^3.10.6",
@@ -42,7 +42,8 @@
     "request": "^2.74.0",
     "rheostat": "^2.0.0",
     "slick-carousel": "^1.6.0",
-    "socket.io": "^1.4.8"
+    "socket.io": "^1.4.8",
+    "mocha": "^3.1.2"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.11.0",

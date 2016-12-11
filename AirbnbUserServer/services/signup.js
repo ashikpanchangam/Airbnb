@@ -28,7 +28,7 @@ function userSignUp(msg, callback) {
         {
             var value = Math.floor((Math.random() * 9) + 0);
             return value.toString();
-        }
+        }   
         return digit1() + digit() + digit() + '-' + digit() + digit() + '-' + digit() + digit() + digit() + digit();
     }
 
