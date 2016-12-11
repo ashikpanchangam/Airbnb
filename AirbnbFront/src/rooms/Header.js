@@ -54,10 +54,10 @@ class Header extends React.Component {
       console.log('hostinfo from header: ', hostInfo)
       this.setState({
         listing: {
-          price: hostInfo.data.price,
-          picture_urls: hostInfo.data.picture_urls,
+          price: hostInfo.data.property_detail.price,
+          picture_urls: hostInfo.data.images,
         }
-      }, ()=>{ console.log('picture_urls from header: ', this.state.listing.picture_urls)})
+      });
     });
   }
 
@@ -92,6 +92,10 @@ handleClose = () => {
         onTouchTap={this.handleClose}
       />,
     ];
+      var imgSrc = '';
+      if(this.state.listing.picture_urls[0] != undefined)
+          imgSrc = this.state.listing.picture_urls[0].img.data;
+
       return (
         <MuiThemeProvider>
           <div>
@@ -112,7 +116,7 @@ handleClose = () => {
             </Dialog>
 
             <div style={{position: 'relative', width: '100vw', 'textAlign': 'center'}}>
-              <img className="header-picture" src={this.state.listing.picture_urls && this.state.listing.picture_urls[0]}/>
+              <img className="header-picture" src={imgSrc}/>
               <div style={{fontSize: '18px',position: "absolute", top: "345px",  color: "white",  backgroundColor: "rgba(0,0,0,.6)", fontWeight:"200", padding: "5px 10px", letterSpacing: '1px'}}>${this.state.listing.price}</div>
 
               <FlatButton onTouchTap={this.handleOpen} style={{position: "absolute", top: "345px", right: '20px', backgroundColor:'white', float: 'right'}} label="View Photos"  labelStyle={{textTransform: "none", color:'#484848', margin: "0 10px"}}  />

@@ -29,7 +29,6 @@ function Finish() {
             "amenities": amenitiesString,
             "price": HostDataModel.getHostPrice(),
             "description": "Dummy Host",
-            "property_host_id": "241-14-2210",
             "is_bidding": isBidding,
             "property_name": "dummy property",
             "lat": HostDataModel.getHostLat(),

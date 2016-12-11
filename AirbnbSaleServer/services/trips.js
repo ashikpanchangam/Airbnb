@@ -17,9 +17,13 @@ var GET_TRIPS_HOST = "SELECT trip_id, DATE_FORMAT(check_in,'%Y-%m-%d %h:%i:%s') 
     "DATE_FORMAT(check_out,'%Y-%m-%d %h:%i:%s') as check_out, guests, trip_property_id, trip_user_id, first_name, last_name " +
     "FROM trip INNER JOIN bill INNER JOIN user ON trip_id = bill_trip_id AND trip_user_id = user_id WHERE trip_host_id = '";
 
-var GET_TRIPS_USER = "SELECT trip_id, DATE_FORMAT(check_in,'%Y-%m-%d %h:%i:%s') as check_in, " +
-    "DATE_FORMAT(check_out,'%Y-%m-%d %h:%i:%s') as check_out, guests, trip_property_id, trip_user_id FROM trip INNER JOIN bill " +
-    "ON trip_id = bill_trip_id WHERE trip_user_id = '";
+// var GET_TRIPS_USER = "SELECT trip_id, DATE_FORMAT(check_in,'%Y-%m-%d %h:%i:%s') as check_in, " +
+//     "DATE_FORMAT(check_out,'%Y-%m-%d %h:%i:%s') as check_out, guests, trip_property_id, trip_user_id FROM trip INNER JOIN bill " +
+//     "ON trip_id = bill_trip_id WHERE trip_user_id = '";
+
+var GET_TRIPS_USER = "SELECT * FROM trip WHERE trip_user_id = '";
+
+
 
 function createTrip(msg, callback){
     var trip_id = generateID.getId();
@@ -77,15 +81,17 @@ function getTripsForUser(msg, callback){
         if(err){
             callback(null, {statusCode: 400});
         }
-        var trips = [];
-        var rows = result.rows;
-        for(var i=0; i<rows.length; i++){
-            var trip = {trip_id: rows[i].trip_id, check_in: rows[i].check_in, check_out: rows[i].check_out,
-                guests: rows[i].guests, trip_property_id: rows[i].trip_property_id, trip_host_id: rows[i].trip_user_id,
-                first_name: rows[i].first_name, last_name: rows[i].last_name};
-            trips.push(trip);
-        }
-        callback(null, {statusCode: 200, data: trips});
+        console.log(result);
+        // var trips = [];
+        // var rows = result.rows;
+        // for(var i=0; i<rows.length; i++){
+        //     var trip = {trip_id: rows[i].trip_id, check_in: rows[i].check_in, check_out: rows[i].check_out,
+        //         guests: rows[i].guests, trip_property_id: rows[i].trip_property_id, trip_host_id: rows[i].trip_user_id,
+        //         first_name: rows[i].first_name, last_name: rows[i].last_name};
+        //     trips.push(trip);
+        // }
+        // callback(null, {statusCode: 200, data: trips});
+        callback(null, {statusCode: 200, data: result});
     });
 }
 

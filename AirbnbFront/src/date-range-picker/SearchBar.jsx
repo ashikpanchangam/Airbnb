@@ -95,7 +95,7 @@ class SearchBar extends React.Component {
     return (
       <div >
         <form className='SearchBarContainer' onSubmit={this.onSubmitSearch}>
-          <input placeholder='Manila' onChange={this.onTyping} type='text' className='SearchBar'></input>
+          <input placeholder='Manila' onChange={this.onTyping} type='text' className='SearchBar'/>
           <DateRangePicker className='hidden-xs'
             {...this.props}
             onDatesChange={this.onDatesChange}

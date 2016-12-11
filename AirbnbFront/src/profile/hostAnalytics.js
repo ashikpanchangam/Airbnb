@@ -62,19 +62,19 @@ export default class HostAnalytics extends React.Component{
     }
 
     render(){
-       let width = $('#myPie1').parent().width();
+       let width = $(window).width();
        let height = $(window).height();
         height = (height - 20 )/2.5
-        // if(width > 800)
-        //     width = (width-50)/3;
-        // else
-        //     width = width/1.5
+        if(width > 800)
+            width = (width-50)/3;
+        else
+            width = width/1.5
         
 
         return (
             <div style={{backgroundColor:'white'}}>
                 <ProfileDash />
-                <div className="container">
+
                 <div className='row'>
                     <div className='col-md-4'>
                     <h3 align='center'>  Users By Area </h3>
@@ -133,7 +133,7 @@ export default class HostAnalytics extends React.Component{
                     </div>
                 
                 </div>
-            </div>
+
             </div>
         );
     }

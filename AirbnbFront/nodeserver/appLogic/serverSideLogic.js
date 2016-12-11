@@ -5,6 +5,7 @@ exports.createHost = function(req,res) {
         "action":"ADD_PROPERTY",
         "content": req.body.content
     };
+    msg_payload.content.property_host_id = req.session.userId;
     var propertyImages = req.body.images;
     // console.dir(msg_payload);
     // console.dir(propertyImages);
@@ -48,7 +49,6 @@ exports.createHost = function(req,res) {
                 }
             }
         }
-        // res.send({statusCode:200});
     })
 };
 
@@ -65,9 +65,14 @@ exports.signIn = function (req,res) {
             throw err;
         }
         if(results.statusCode == 200) {
+            console.log("inside signin success");
+            // console.log(results);
             req.session.userId = results.results[0].user_id;
             req.session.userName = results.results[0].first_name;
             req.session.currentUser = results.results[0];
+            if(results.results[0].user_id == "team11@team11.team11")
+                req.session.isAdmin = true;
+            console.log(req.session);
             res.json({statusCode: 200});
         }
         else
@@ -162,7 +167,7 @@ exports.getListingInfo = function(req,res) {
     //   console.log("info: ", info);
     //   res.json(info);
     // });
-
+    console.log("inside getlisting info");
     var data = {
         "action":"GET_INFO",
         "content": {
@@ -173,6 +178,7 @@ exports.getListingInfo = function(req,res) {
         if (err) {
             throw err;
         }
+        console.log("get listing info results:");
         console.log(results);
         res.send(results);
     });
@@ -194,9 +200,50 @@ exports.editProfile = function(req,res) {
             req.session.userId = results.updatedUser[0].user_id;
             req.session.userName = results.updatedUser[0].first_name;
             req.session.currentUser = results.updatedUser[0];
+            if(results.updatedUser[0].user_id == "team11@team11.team11")
+                req.session.isAdmin = true;
             res.send(results);
         }
         else
             res.send(results);
+    });
+};
+
+exports.createTrip= function(req,res) {
+    var data = {
+        "action": "CREATE_TRIP",
+        "content": req.body
+    };
+    mq_client.make_request('trip_queue', data, function (err, results) {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    });
+};
+
+exports.getUserTrips= function(req,res) {
+    var data = {
+        "action": "GET_TRIPS_USER",
+        "content": {user_id: req.session.userId}
+    };
+    mq_client.make_request('trip_queue', data, function (err, results) {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    });
+};
+
+exports.getUserListings = function(req,res) {
+    var data = {
+        "action": "GET_USER_PROPERTIES",
+        "content": {property_host_id: req.session.userId}
+    };
+    mq_client.make_request('property_detail_queue', data, function (err, results) {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
     });
 };

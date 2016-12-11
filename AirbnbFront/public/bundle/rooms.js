@@ -2,7 +2,7 @@ webpackJsonp([3],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(858);
+	module.exports = __webpack_require__(872);
 
 
 /***/ },
@@ -38381,8 +38381,100 @@ webpackJsonp([3],[
 /* 792 */,
 /* 793 */,
 /* 794 */,
-/* 795 */,
-/* 796 */,
+/* 795 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+	
+	var _Divider = __webpack_require__(796);
+	
+	var _Divider2 = _interopRequireDefault(_Divider);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _Divider2.default;
+
+/***/ },
+/* 796 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends2 = __webpack_require__(680);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _objectWithoutProperties2 = __webpack_require__(685);
+	
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+	
+	var _simpleAssign = __webpack_require__(686);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Divider = function Divider(props, context) {
+	  var inset = props.inset,
+	      style = props.style,
+	      other = (0, _objectWithoutProperties3.default)(props, ['inset', 'style']);
+	  var _context$muiTheme = context.muiTheme,
+	      baseTheme = _context$muiTheme.baseTheme,
+	      prepareStyles = _context$muiTheme.prepareStyles;
+	
+	
+	  var styles = {
+	    root: {
+	      margin: 0,
+	      marginTop: -1,
+	      marginLeft: inset ? 72 : 0,
+	      height: 1,
+	      border: 'none',
+	      backgroundColor: baseTheme.palette.borderColor
+	    }
+	  };
+	
+	  return _react2.default.createElement('hr', (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }));
+	};
+	
+	Divider.muiName = 'Divider';
+	
+	process.env.NODE_ENV !== "production" ? Divider.propTypes = {
+	  /**
+	   * If true, the `Divider` will be indented.
+	   */
+	  inset: _react.PropTypes.bool,
+	  /**
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object
+	} : void 0;
+	
+	Divider.defaultProps = {
+	  inset: false
+	};
+	
+	Divider.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	
+	exports.default = Divider;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
 /* 797 */,
 /* 798 */,
 /* 799 */,
@@ -38398,7 +38490,23 @@ webpackJsonp([3],[
 /* 809 */,
 /* 810 */,
 /* 811 */,
-/* 812 */
+/* 812 */,
+/* 813 */,
+/* 814 */,
+/* 815 */,
+/* 816 */,
+/* 817 */,
+/* 818 */,
+/* 819 */,
+/* 820 */,
+/* 821 */,
+/* 822 */,
+/* 823 */,
+/* 824 */,
+/* 825 */,
+/* 826 */,
+/* 827 */,
+/* 828 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38435,22 +38543,6 @@ webpackJsonp([3],[
 	exports.default = ActionHome;
 
 /***/ },
-/* 813 */,
-/* 814 */,
-/* 815 */,
-/* 816 */,
-/* 817 */,
-/* 818 */,
-/* 819 */,
-/* 820 */,
-/* 821 */,
-/* 822 */,
-/* 823 */,
-/* 824 */,
-/* 825 */,
-/* 826 */,
-/* 827 */,
-/* 828 */,
 /* 829 */,
 /* 830 */,
 /* 831 */,
@@ -38468,7 +38560,23 @@ webpackJsonp([3],[
 /* 843 */,
 /* 844 */,
 /* 845 */,
-/* 846 */
+/* 846 */,
+/* 847 */,
+/* 848 */,
+/* 849 */,
+/* 850 */,
+/* 851 */,
+/* 852 */,
+/* 853 */,
+/* 854 */,
+/* 855 */,
+/* 856 */,
+/* 857 */,
+/* 858 */,
+/* 859 */,
+/* 860 */,
+/* 861 */,
+/* 862 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38478,7 +38586,7 @@ webpackJsonp([3],[
 	});
 	exports.default = undefined;
 	
-	var _Dialog = __webpack_require__(847);
+	var _Dialog = __webpack_require__(863);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
@@ -38487,7 +38595,7 @@ webpackJsonp([3],[
 	exports.default = _Dialog2.default;
 
 /***/ },
-/* 847 */
+/* 863 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -38548,7 +38656,7 @@ webpackJsonp([3],[
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _Overlay = __webpack_require__(848);
+	var _Overlay = __webpack_require__(864);
 	
 	var _Overlay2 = _interopRequireDefault(_Overlay);
 	
@@ -39080,7 +39188,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 848 */
+/* 864 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -39129,7 +39237,7 @@ webpackJsonp([3],[
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _AutoLockScrolling = __webpack_require__(849);
+	var _AutoLockScrolling = __webpack_require__(865);
 	
 	var _AutoLockScrolling2 = _interopRequireDefault(_AutoLockScrolling);
 	
@@ -39226,7 +39334,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 849 */
+/* 865 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -39352,7 +39460,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 850 */
+/* 866 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39362,101 +39470,7 @@ webpackJsonp([3],[
 	});
 	exports.default = undefined;
 	
-	var _Divider = __webpack_require__(851);
-	
-	var _Divider2 = _interopRequireDefault(_Divider);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _Divider2.default;
-
-/***/ },
-/* 851 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends2 = __webpack_require__(680);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
-	
-	var _objectWithoutProperties2 = __webpack_require__(685);
-	
-	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-	
-	var _simpleAssign = __webpack_require__(686);
-	
-	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Divider = function Divider(props, context) {
-	  var inset = props.inset,
-	      style = props.style,
-	      other = (0, _objectWithoutProperties3.default)(props, ['inset', 'style']);
-	  var _context$muiTheme = context.muiTheme,
-	      baseTheme = _context$muiTheme.baseTheme,
-	      prepareStyles = _context$muiTheme.prepareStyles;
-	
-	
-	  var styles = {
-	    root: {
-	      margin: 0,
-	      marginTop: -1,
-	      marginLeft: inset ? 72 : 0,
-	      height: 1,
-	      border: 'none',
-	      backgroundColor: baseTheme.palette.borderColor
-	    }
-	  };
-	
-	  return _react2.default.createElement('hr', (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }));
-	};
-	
-	Divider.muiName = 'Divider';
-	
-	process.env.NODE_ENV !== "production" ? Divider.propTypes = {
-	  /**
-	   * If true, the `Divider` will be indented.
-	   */
-	  inset: _react.PropTypes.bool,
-	  /**
-	   * Override the inline-styles of the root element.
-	   */
-	  style: _react.PropTypes.object
-	} : void 0;
-	
-	Divider.defaultProps = {
-	  inset: false
-	};
-	
-	Divider.contextTypes = {
-	  muiTheme: _react.PropTypes.object.isRequired
-	};
-	
-	exports.default = Divider;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ },
-/* 852 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = undefined;
-	
-	var _TextField = __webpack_require__(853);
+	var _TextField = __webpack_require__(867);
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
@@ -39465,7 +39479,7 @@ webpackJsonp([3],[
 	exports.default = _TextField2.default;
 
 /***/ },
-/* 853 */
+/* 867 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -39522,19 +39536,19 @@ webpackJsonp([3],[
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _EnhancedTextarea = __webpack_require__(854);
+	var _EnhancedTextarea = __webpack_require__(868);
 	
 	var _EnhancedTextarea2 = _interopRequireDefault(_EnhancedTextarea);
 	
-	var _TextFieldHint = __webpack_require__(855);
+	var _TextFieldHint = __webpack_require__(869);
 	
 	var _TextFieldHint2 = _interopRequireDefault(_TextFieldHint);
 	
-	var _TextFieldLabel = __webpack_require__(856);
+	var _TextFieldLabel = __webpack_require__(870);
 	
 	var _TextFieldLabel2 = _interopRequireDefault(_TextFieldLabel);
 	
-	var _TextFieldUnderline = __webpack_require__(857);
+	var _TextFieldUnderline = __webpack_require__(871);
 	
 	var _TextFieldUnderline2 = _interopRequireDefault(_TextFieldUnderline);
 	
@@ -40029,7 +40043,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 854 */
+/* 868 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -40275,7 +40289,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 855 */
+/* 869 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -40357,7 +40371,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 856 */
+/* 870 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -40474,7 +40488,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 857 */
+/* 871 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -40610,7 +40624,7 @@ webpackJsonp([3],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 858 */
+/* 872 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -40625,15 +40639,15 @@ webpackJsonp([3],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Header = __webpack_require__(859);
+	var _Header = __webpack_require__(873);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _About = __webpack_require__(862);
+	var _About = __webpack_require__(876);
 	
 	var _About2 = _interopRequireDefault(_About);
 	
-	var _Summary = __webpack_require__(864);
+	var _Summary = __webpack_require__(878);
 	
 	var _Summary2 = _interopRequireDefault(_Summary);
 	
@@ -40661,7 +40675,7 @@ webpackJsonp([3],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(860);
+	__webpack_require__(874);
 	
 	var Rooms = function (_Component) {
 	  _inherits(Rooms, _Component);
@@ -40693,7 +40707,7 @@ webpackJsonp([3],[
 	exports.default = Rooms;
 
 /***/ },
-/* 859 */
+/* 873 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40722,7 +40736,7 @@ webpackJsonp([3],[
 	
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 	
-	var _Dialog = __webpack_require__(846);
+	var _Dialog = __webpack_require__(862);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
@@ -40742,7 +40756,7 @@ webpackJsonp([3],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(860);
+	__webpack_require__(874);
 	
 	var PrevArrow = function (_React$Component) {
 	  _inherits(PrevArrow, _React$Component);
@@ -40818,11 +40832,9 @@ webpackJsonp([3],[
 	      console.log('hostinfo from header: ', hostInfo);
 	      _this3.setState({
 	        listing: {
-	          price: hostInfo.data.price,
-	          picture_urls: hostInfo.data.picture_urls
+	          price: hostInfo.data.property_detail.price,
+	          picture_urls: hostInfo.data.images
 	        }
-	      }, function () {
-	        console.log('picture_urls from header: ', _this3.state.listing.picture_urls);
 	      });
 	    });
 	    return _this3;
@@ -40850,6 +40862,9 @@ webpackJsonp([3],[
 	        keyboardFocused: true,
 	        onTouchTap: this.handleClose
 	      })];
+	      var imgSrc = '';
+	      if (this.state.listing.picture_urls[0] != undefined) imgSrc = this.state.listing.picture_urls[0].img.data;
+	
 	      return _react2.default.createElement(
 	        _MuiThemeProvider2.default,
 	        null,
@@ -40866,7 +40881,7 @@ webpackJsonp([3],[
 	          _react2.default.createElement(
 	            'div',
 	            { style: { position: 'relative', width: '100vw', 'textAlign': 'center' } },
-	            _react2.default.createElement('img', { className: 'header-picture', src: this.state.listing.picture_urls && this.state.listing.picture_urls[0] }),
+	            _react2.default.createElement('img', { className: 'header-picture', src: imgSrc }),
 	            _react2.default.createElement(
 	              'div',
 	              { style: { fontSize: '18px', position: "absolute", top: "345px", color: "white", backgroundColor: "rgba(0,0,0,.6)", fontWeight: "200", padding: "5px 10px", letterSpacing: '1px' } },
@@ -40886,13 +40901,13 @@ webpackJsonp([3],[
 	exports.default = Header;
 
 /***/ },
-/* 860 */
+/* 874 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(861);
+	var content = __webpack_require__(875);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(58)(content, {});
@@ -40912,7 +40927,7 @@ webpackJsonp([3],[
 	}
 
 /***/ },
-/* 861 */
+/* 875 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(57)();
@@ -40926,7 +40941,7 @@ webpackJsonp([3],[
 
 
 /***/ },
-/* 862 */
+/* 876 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40949,7 +40964,7 @@ webpackJsonp([3],[
 	
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 	
-	var _messageModal = __webpack_require__(863);
+	var _messageModal = __webpack_require__(877);
 	
 	var _messageModal2 = _interopRequireDefault(_messageModal);
 	
@@ -40965,7 +40980,7 @@ webpackJsonp([3],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(860);
+	__webpack_require__(874);
 	
 	var style = {
 	  boldFont: {
@@ -40981,6 +40996,9 @@ webpackJsonp([3],[
 	
 	    var _this = _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).call(this, props));
 	
+	    _this.handleDateChange = _this.handleDateChange.bind(_this);
+	    _this.guestsChange = _this.guestsChange.bind(_this);
+	    _this.handleBooking = _this.handleBooking.bind(_this);
 	    _this.state = {
 	      listing: {
 	        city: null,
@@ -41024,51 +41042,53 @@ webpackJsonp([3],[
 	        currency_symbol_right: null,
 	        summary: null,
 	        house_rules: null
-	      }
+	      },
+	      totalTripPrice: null,
+	      noOfGuests: 1
 	    };
 	    _axios2.default.get('/listingInfo/' + _this.props.rid).then(function (hostInfo) {
 	      _this.setState({
 	        listing: {
-	          city: hostInfo.data.city,
-	          state: hostInfo.data.state,
-	          country: hostInfo.data.country,
-	          id: hostInfo.data.city,
-	          name: hostInfo.data.property_name,
-	          picture_url: hostInfo.data.picture_url,
-	          price: hostInfo.data.price,
-	          thumbnail_url: hostInfo.data.thumbnail_url,
+	          city: hostInfo.data.property_detail.city,
+	          state: hostInfo.data.property_detail.state,
+	          country: hostInfo.data.property_detail.country,
+	          id: hostInfo.data.property_detail.property_id,
+	          name: hostInfo.data.property_detail.property_name,
+	          picture_url: hostInfo.data.property_detail.picture_url,
+	          price: hostInfo.data.property_detail.price,
+	          thumbnail_url: hostInfo.data.property_detail.thumbnail_url,
 	          user: {
-	            id: hostInfo.data.property_host_id
+	            id: hostInfo.data.property_detail.property_host_id
 	          },
-	          hosts: hostInfo.data.hosts,
-	          user_id: hostInfo.data.property_host_id,
-	          xl_picture_url: hostInfo.data.xl_picture_url,
-	          address: hostInfo.data.address,
-	          bathrooms: hostInfo.data.bathrooms,
-	          bedrooms: hostInfo.data.bedrooms,
-	          beds: hostInfo.data.beds,
-	          cancellation_policy: hostInfo.data.cancellation_policy,
-	          country_code: hostInfo.data.country_code,
-	          has_availability: hostInfo.data.has_availability,
-	          person_capacity: hostInfo.data.accommodates,
-	          picture_count: hostInfo.data.picture_count,
-	          picture_urls: hostInfo.data.picture_urls,
-	          property_type: hostInfo.data.category,
-	          reviews_count: hostInfo.data.reviews_count,
-	          room_type: hostInfo.data.category,
-	          access: hostInfo.data.access,
-	          amenities: hostInfo.data.amenities,
-	          cancel_policy: hostInfo.data.cancel_policy,
-	          check_in_time: hostInfo.data.check_in_time,
-	          check_in_time_end: hostInfo.data.check_in_time_end,
-	          check_in_time_ends_at: hostInfo.data.check_in_time_ends_at,
-	          check_in_time_start: hostInfo.data.check_in_time_start,
-	          check_out_time: hostInfo.data.check_out_time,
-	          cleaning_fee_native: hostInfo.data.cleaning_fee_native,
-	          currency_symbol_right: hostInfo.data.currency_symbol_right,
-	          summary: hostInfo.data.description,
-	          house_rules: hostInfo.data.house_rules,
-	          isBidding: hostInfo.data.is_bidding
+	          hosts: hostInfo.data.property_detail.hosts,
+	          user_id: hostInfo.data.property_detail.property_host_id,
+	          xl_picture_url: hostInfo.data.property_detail.xl_picture_url,
+	          address: hostInfo.data.property_detail.address,
+	          bathrooms: hostInfo.data.property_detail.bathrooms,
+	          bedrooms: hostInfo.data.property_detail.bedrooms,
+	          beds: hostInfo.data.property_detail.beds,
+	          cancellation_policy: hostInfo.data.property_detail.cancellation_policy,
+	          country_code: hostInfo.data.property_detail.country_code,
+	          has_availability: hostInfo.data.property_detail.has_availability,
+	          person_capacity: hostInfo.data.property_detail.accommodates,
+	          picture_count: hostInfo.data.property_detail.picture_count,
+	          picture_urls: hostInfo.data.property_detail.picture_urls,
+	          property_type: hostInfo.data.property_detail.category,
+	          reviews_count: hostInfo.data.property_detail.reviews_count,
+	          room_type: hostInfo.data.property_detail.category,
+	          access: hostInfo.data.property_detail.access,
+	          amenities: hostInfo.data.property_detail.amenities,
+	          cancel_policy: hostInfo.data.property_detail.cancel_policy,
+	          check_in_time: hostInfo.data.property_detail.check_in_time,
+	          check_in_time_end: hostInfo.data.property_detail.check_in_time_end,
+	          check_in_time_ends_at: hostInfo.data.property_detail.check_in_time_ends_at,
+	          check_in_time_start: hostInfo.data.property_detail.check_in_time_start,
+	          check_out_time: hostInfo.data.property_detail.check_out_time,
+	          cleaning_fee_native: hostInfo.data.property_detail.cleaning_fee_native,
+	          currency_symbol_right: hostInfo.data.property_detail.currency_symbol_right,
+	          summary: hostInfo.data.property_detail.description,
+	          house_rules: hostInfo.data.property_detail.house_rules,
+	          isBidding: hostInfo.data.property_detail.is_bidding
 	        }
 	      });
 	    });
@@ -41076,8 +41096,51 @@ webpackJsonp([3],[
 	  }
 	
 	  _createClass(About, [{
+	    key: 'handleDateChange',
+	    value: function handleDateChange() {
+	      if (this.inputCheckIn.value == "" || this.inputCheckOut.value == "") return;
+	
+	      var noOfDays = parseInt((new Date(this.inputCheckOut.value) - new Date(this.inputCheckIn.value)) / (24 * 3600 * 1000));
+	      var totalPrice = this.state.listing.price * noOfDays;
+	      this.setState({ totalTripPrice: totalPrice });
+	    }
+	  }, {
+	    key: 'handleBooking',
+	    value: function handleBooking() {
+	      var _this2 = this;
+	
+	      var userId;
+	      _axios2.default.get('/getSession').then(function (response) {
+	        userId = response.data.userId;
+	        var data = {
+	          guests: _this2.state.noOfGuests,
+	          total: _this2.state.totalTripPrice,
+	          check_in: _this2.inputCheckIn.value,
+	          check_out: _this2.inputCheckOut.value,
+	          user_id: userId,
+	          host_id: _this2.state.listing.user.id,
+	          property_id: _this2.state.listing.id
+	        };
+	        console.log(data);
+	        _axios2.default.post('/createTrip', data).then(function (response) {
+	          if (response.data.statusCode == 200) alert("Successfully Booked");
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'guestsChange',
+	    value: function guestsChange(e) {
+	      this.setState({ noOfGuests: e.target.value }, function () {
+	        console.log(this.state.noOfGuests);
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this3 = this;
+	
+	      var tPrice = '';
+	      if (this.state.totalTripPrice != null && this.state.totalTripPrice > 0) var tPrice = "Total Price for the trip: $" + this.state.totalTripPrice;
 	
 	      var BidOrBook = null;
 	      if (this.state.listing.isBidding == 1) {
@@ -41107,7 +41170,7 @@ webpackJsonp([3],[
 	            { style: { marginTop: '1em', textAlign: 'center' } },
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-default' },
+	              { className: 'btn btn-default btn-block' },
 	              'Bid'
 	            )
 	          )
@@ -41121,7 +41184,7 @@ webpackJsonp([3],[
 	            { style: { marginTop: '1em', textAlign: 'center' } },
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-default' },
+	              { className: 'btn btn-default btn-block', onClick: this.handleBooking },
 	              'Book'
 	            )
 	          )
@@ -41139,7 +41202,7 @@ webpackJsonp([3],[
 	            { className: 'row', style: { padding: "0 15px", letterSpacing: '1px' } },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'col-md-6 col-md-offset-2' },
+	              { className: 'col-md-5 col-md-offset-1' },
 	              _react2.default.createElement(
 	                'div',
 	                { className: 'cnt-sm-left-md', style: { fontSize: "16px", fontWeight: "500", paddingTop: '35px', Color: '#484848' } },
@@ -41183,16 +41246,6 @@ webpackJsonp([3],[
 	                _react2.default.createElement(
 	                  'div',
 	                  null,
-	                  'Bedrooms: ',
-	                  _react2.default.createElement(
-	                    'span',
-	                    { style: style.boldFont },
-	                    this.state.listing.bedrooms
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  null,
 	                  'Beds: ',
 	                  _react2.default.createElement(
 	                    'span',
@@ -41204,48 +41257,24 @@ webpackJsonp([3],[
 	              _react2.default.createElement(
 	                'div',
 	                { className: 'col-sm-4', style: { fontSize: '13px', color: '#4d4d4d', padding: '0px' } },
-	                this.state.listing.check_in_time > 12 ? _react2.default.createElement(
+	                _react2.default.createElement(
 	                  'div',
 	                  null,
 	                  'Check In: ',
 	                  _react2.default.createElement(
 	                    'span',
 	                    { style: style.boldFont },
-	                    'Anytime after ',
-	                    this.state.listing.check_in_time - 12,
-	                    'PM'
-	                  )
-	                ) : _react2.default.createElement(
-	                  'div',
-	                  null,
-	                  'Check In: ',
-	                  _react2.default.createElement(
-	                    'span',
-	                    { style: style.boldFont },
-	                    'Anytime after ',
-	                    this.state.listing.check_in_time,
-	                    'AM'
+	                    'After 12PM'
 	                  )
 	                ),
-	                this.state.listing.check_out_time > 12 ? _react2.default.createElement(
+	                _react2.default.createElement(
 	                  'div',
 	                  null,
 	                  'Check Out:',
 	                  _react2.default.createElement(
 	                    'span',
 	                    { style: style.boldFont },
-	                    this.state.listing.check_out_time - 12,
-	                    'PM'
-	                  )
-	                ) : _react2.default.createElement(
-	                  'div',
-	                  null,
-	                  'Check Out:',
-	                  _react2.default.createElement(
-	                    'span',
-	                    { style: style.boldFont },
-	                    this.state.listing.check_out_time,
-	                    'AM'
+	                    '11AM'
 	                  )
 	                ),
 	                _react2.default.createElement(
@@ -41272,7 +41301,144 @@ webpackJsonp([3],[
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'col-md-2 col-md-offset-1', style: { marginTop: '6em' } },
+	              { className: 'col-md-4 col-md-offset-1', style: { marginTop: '1em' } },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'col-md-6' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      { htmlFor: 'inputCheckIn' },
+	                      'Check In'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'date', ref: function ref(input) {
+	                        _this3.inputCheckIn = input;
+	                      }, className: 'form-control', id: 'inputCheckIn', onChange: this.handleDateChange })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'col-md-6' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      { htmlFor: 'inputCheckOut' },
+	                      'Check Out'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'date', ref: function ref(input) {
+	                        _this3.inputCheckOut = input;
+	                      }, className: 'form-control', id: 'inputCheckOut', onChange: this.handleDateChange })
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                  'label',
+	                  { htmlFor: 'Guests' },
+	                  'Guests'
+	                ),
+	                _react2.default.createElement(
+	                  'select',
+	                  { selected: this.state.noOfGuests, className: 'form-control', onChange: this.guestsChange },
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '1' },
+	                    '1'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '2' },
+	                    '2'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '3' },
+	                    '3'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '4' },
+	                    '4'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '5' },
+	                    '5'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '6' },
+	                    '6'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '7' },
+	                    '7'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '8' },
+	                    '8'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '9' },
+	                    '9'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '10' },
+	                    '10'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '11' },
+	                    '11'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '12' },
+	                    '12'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '13' },
+	                    '13'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '14' },
+	                    '14'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '15' },
+	                    '15'
+	                  ),
+	                  _react2.default.createElement(
+	                    'option',
+	                    { value: '16' },
+	                    '16'
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                'Price per Night: ',
+	                this.state.listing.price != null ? '$' + this.state.listing.price : '',
+	                _react2.default.createElement('br', null),
+	                tPrice
+	              ),
 	              BidOrBook
 	            )
 	          )
@@ -41287,7 +41453,7 @@ webpackJsonp([3],[
 	exports.default = About;
 
 /***/ },
-/* 863 */
+/* 877 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41302,7 +41468,7 @@ webpackJsonp([3],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Dialog = __webpack_require__(846);
+	var _Dialog = __webpack_require__(862);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
@@ -41318,7 +41484,7 @@ webpackJsonp([3],[
 	
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 	
-	var _Divider = __webpack_require__(850);
+	var _Divider = __webpack_require__(795);
 	
 	var _Divider2 = _interopRequireDefault(_Divider);
 	
@@ -41326,7 +41492,7 @@ webpackJsonp([3],[
 	
 	var _Paper2 = _interopRequireDefault(_Paper);
 	
-	var _TextField = __webpack_require__(852);
+	var _TextField = __webpack_require__(866);
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
@@ -41470,7 +41636,7 @@ webpackJsonp([3],[
 	exports.default = blop;
 
 /***/ },
-/* 864 */
+/* 878 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41489,19 +41655,19 @@ webpackJsonp([3],[
 	
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 	
-	var _home = __webpack_require__(812);
+	var _home = __webpack_require__(828);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _peopleOutline = __webpack_require__(865);
+	var _peopleOutline = __webpack_require__(879);
 	
 	var _peopleOutline2 = _interopRequireDefault(_peopleOutline);
 	
-	var _contacts = __webpack_require__(866);
+	var _contacts = __webpack_require__(880);
 	
 	var _contacts2 = _interopRequireDefault(_contacts);
 	
-	var _airlineSeatIndividualSuite = __webpack_require__(867);
+	var _airlineSeatIndividualSuite = __webpack_require__(881);
 	
 	var _airlineSeatIndividualSuite2 = _interopRequireDefault(_airlineSeatIndividualSuite);
 	
@@ -41517,7 +41683,7 @@ webpackJsonp([3],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(860);
+	__webpack_require__(874);
 	
 	var Summary = function (_React$Component) {
 	  _inherits(Summary, _React$Component);
@@ -41553,20 +41719,20 @@ webpackJsonp([3],[
 	
 	      _this.setState({
 	        listing: {
-	          city: hostInfo.data.city,
-	          state: hostInfo.data.state,
-	          country: hostInfo.data.country,
-	          name: hostInfo.data.property_name,
-	          picture_url: hostInfo.data.picture_url,
+	          city: hostInfo.data.property_detail.city,
+	          state: hostInfo.data.property_detail.state,
+	          country: hostInfo.data.property_detail.country,
+	          name: hostInfo.data.property_detail.property_name,
+	          picture_url: hostInfo.data.images[1].img.data,
 	          user: {
-	            id: hostInfo.data.property_host_id
+	            id: hostInfo.data.property_detail.property_host_id
 	          },
-	          hosts: hostInfo.data.hosts,
-	          bedrooms: hostInfo.data.bedrooms,
-	          beds: hostInfo.data.beds,
-	          person_capacity: hostInfo.data.accommodates,
-	          reviews_count: hostInfo.data.reviews_count,
-	          room_type: hostInfo.data.category
+	          hosts: hostInfo.data.property_detail.hosts,
+	          bedrooms: hostInfo.data.property_detail.bedrooms,
+	          beds: hostInfo.data.property_detail.beds,
+	          person_capacity: hostInfo.data.property_detail.accommodates,
+	          reviews_count: hostInfo.data.review_and_rating.review_num,
+	          room_type: hostInfo.data.property_detail.category
 	        }
 	      });
 	    });
@@ -41585,7 +41751,7 @@ webpackJsonp([3],[
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-xs-12 col-sm-4', style: { paddingBottom: "25px" } },
-	            _react2.default.createElement('img', { className: 'center-block', style: { borderRadius: '100%', height: '85px', width: '85px' }, src: this.state.listing.hosts !== undefined && this.state.listing.hosts[0].picture_url }),
+	            _react2.default.createElement('img', { className: 'center-block', style: { borderRadius: '100%', height: '85px', width: '85px' }, src: this.state.listing !== undefined && this.state.listing.picture_url }),
 	            _react2.default.createElement(
 	              'div',
 	              { style: { textAlign: "center", fontSize: '13px', color: '#767676', paddingTop: '5px' }, className: 'hidden-xs' },
@@ -41692,7 +41858,7 @@ webpackJsonp([3],[
 	exports.default = Summary;
 
 /***/ },
-/* 865 */
+/* 879 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41729,7 +41895,7 @@ webpackJsonp([3],[
 	exports.default = SocialPeopleOutline;
 
 /***/ },
-/* 866 */
+/* 880 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41766,7 +41932,7 @@ webpackJsonp([3],[
 	exports.default = CommunicationContacts;
 
 /***/ },
-/* 867 */
+/* 881 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

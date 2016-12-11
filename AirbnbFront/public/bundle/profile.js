@@ -35199,11 +35199,6 @@ webpackJsonp([2],[
 	          ),
 	          _react2.default.createElement(
 	            'a',
-	            { style: style.item, href: '/inbox' },
-	            'Inbox'
-	          ),
-	          _react2.default.createElement(
-	            'a',
 	            { style: style.item, href: '/rooms' },
 	            'Your Listings'
 	          ),
@@ -35219,13 +35214,8 @@ webpackJsonp([2],[
 	          ),
 	          _react2.default.createElement(
 	            'a',
-	            { style: style.item, href: '/users/notifications' },
-	            'Account'
-	          ),
-	          _react2.default.createElement(
-	            'a',
 	            { style: style.item, href: '/invite' },
-	            'Travel Credit'
+	            'Analytics'
 	          )
 	        )
 	      )
