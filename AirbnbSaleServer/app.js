@@ -12,8 +12,8 @@ var conn = amqp.createConnection({host: '127.0.0.1'});
 mongo.connect(function (err) {
     try{
         console.log("Mongod connected");
-        test.executeGetTests();
-        //test.executeInsertTests();
+        //test.executeGetTests();
+        test.executeInsertTests();
     }catch (err){
         console.err("Couldn't connect to mongo db");
     }

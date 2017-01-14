@@ -7,10 +7,10 @@ var dateFormat = require('dateformat');
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,
-    host     : 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com',
-    user     : 'cmpe273',
-    password : 'cmpe273',
-    database : 'airbnb_mysql',
+    host     : '',
+    user     : '',
+    password : '',
+    database : '',
     debug    :  false
 });
 
@@ -142,6 +142,30 @@ function operate(msg,type,callback) {
 function getCurrentDateTime(){
     var now = new Date();
     return dateFormat(now, "yyyy-mm-dd h:MM:ss");
+}
+
+function getDynamicPrice(actualPrice){
+    var date = getCurrentDateTime();
+    var mongoLogs = mongo.collection('airbnb_logs');
+    var dateColl = mongo.collection('price_dates');
+    mongoLogs.aggregate([
+        {$match: {"data.property_id": {"$exists": true, "$ne": null}, "data.host_id": {"$eq": msg.host_id}, "timestamp": new Date()}},
+        {$group: {_id: "$data.property_id", clicks: {$sum: 1}}}], function (err, result) {
+        if(err){
+            return actualPrice;
+        }
+        dateColl.find({date: date}, function (err, document) {
+            var propertyClickCount = result.clicks;
+            if(propertyClickCount > 1000 && propertyClickCount < 5000 || document.date.indexOf(date)){
+                return actualPrice * 1.1;
+            }else if(propertyClickCount > 5000 && propertyClickCount < 10000 || document.date.indexOf(date)){
+                return actualPrice * 1.2;
+            }else if(propertyClickCount < 10){
+                return actualPrice * 0.9;
+            }
+        });
+
+    });
 }
 
 exports.operate = operate;

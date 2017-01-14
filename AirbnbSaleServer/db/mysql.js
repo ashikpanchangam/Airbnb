@@ -7,10 +7,10 @@ var logger = require('../helpers/logger');
 
 var pool    =   mysql.createPool({
     connectionLimit : 20,
-    host     : 'ec2-54-212-241-30.us-west-2.compute.amazonaws.com',
-    user     : 'cmpe273',
-    password : 'cmpe273',
-    database : 'airbnb_mysql',
+    host     : '',
+    user     : '',
+    password : '',
+    database : '',
     debug    :  false
 });
 

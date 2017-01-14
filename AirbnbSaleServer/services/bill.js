@@ -14,7 +14,7 @@ var GENERATE_BILL = "SELECT * FROM trip INNER JOIN user INNER JOIN property INNE
 
 var DELETE_BILL = "DELETE FROM bill WHERE bill_id = '";
 
-var SEARCH_BILL = "";
+var SEARCH_BILL = "SELECT * FROM bill WHERE bill_date = '";
 
 function generateBill(msg, callback){
     var insertBillQuery = CREATE_BILL + generateID.getId() + "', " + timeUtil.getCurrentDateTime() + ", '" + msg.property_id + "', '" +
@@ -52,7 +52,12 @@ function deleteBill(msg, callback){
 }
 
 function searchBill(msg, callback){
-    //TODO
+    mysql.performOperation(SEARCH_BILL + msg.bill_date + "'", function (err, result) {
+        if(err){
+            callback(null, {statusCode: 400});
+        }
+        callback(null, {statusCode: 200});
+    })
 }
 
 exports.handle_bill_queue = function(msg, callback) {
@@ -64,7 +69,7 @@ exports.handle_bill_queue = function(msg, callback) {
             deleteBill(msg.content, callback);
             break;
         case 'SEARCH_BILL':
-            // TODO Need to understand the requirement
+            searchBill(msg.content, callback);
             break;
         default:
             callback(null, {statusCode: 400});

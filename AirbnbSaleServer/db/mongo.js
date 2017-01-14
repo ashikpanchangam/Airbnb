@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var mongoConnectURL = "mongodb://localhost:27017/AirbnbMongo?maxPoolSize=500";
+var mongoConnectURL = "";
 var db;
 var connected = false;
 

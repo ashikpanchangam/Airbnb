@@ -49,7 +49,7 @@ function executeInsertTests() {
 
     // Testing for logging data
     // Property click data
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212653'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '622-37-6830', host_id: '962-01-3763', user_id: '522-37-6830'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -57,7 +57,7 @@ function executeInsertTests() {
             console.log('Loggin result '+ JSON.stringify(result));
     });
 
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212051',  host_id: '345210000', user_id: '345212653'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '722-37-6832',  host_id: '962-01-3763', user_id: '522-37-6830'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -65,7 +65,7 @@ function executeInsertTests() {
             console.log('Loggin result '+ JSON.stringify(result));
         });
 
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212600'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '700-37-6830', host_id: '962-01-3763', user_id: '822-37-6830'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -73,7 +73,7 @@ function executeInsertTests() {
             console.log('Loggin result '+ JSON.stringify(result));
         });
 
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '340212050', host_id: '345210000', user_id: '345212600'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'property_clicks', key: '722-37-6831', host_id: '962-01-3763', user_id: '522-37-6830'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -82,7 +82,7 @@ function executeInsertTests() {
         });
 
     // Page click data
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212653'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '962-01-3763', user_id: '345212653'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -90,7 +90,7 @@ function executeInsertTests() {
             console.log('Loggin result '+ JSON.stringify(result));
         });
 
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212600'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '962-01-3763', user_id: '345212600'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -98,7 +98,7 @@ function executeInsertTests() {
             console.log('Loggin result '+ JSON.stringify(result));
         });
 
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'ProfilePage', host_id: '345210000', user_id: '345212653'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'ProfilePage', user_id: '345212653'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);
@@ -106,7 +106,7 @@ function executeInsertTests() {
             console.log('Loggin result '+ JSON.stringify(result));
         });
 
-    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '345210000', user_id: '345212600'}},
+    log_data.handle_log_data({action: 'LOG_DATA', content: {category: 'page_clicks', key: 'PropertyPage', host_id: '622-37-6830', user_id: '522-37-6830'}},
         function (err, result) {
             if(err){
                 console.log("Error logging "+ err);

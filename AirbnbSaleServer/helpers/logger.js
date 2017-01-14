@@ -51,7 +51,7 @@ function logToDb(data, err){
             mysql.performOperation(getLocationQuery, function (error, result) {
                 if(error){
                     fileLogger.error('Error logging to data '+ error);
-                }else {
+                }else if(result.rows.length > 0) {
                     logData = {area: result.rows[0].city, host_id: logData.host_id, user_id: logData.user_id, msg: 'Property in area '+ result.rows[0].city + ' clicked by user '+ data.user_id};
                     dbLogger.info(logData);
                 }

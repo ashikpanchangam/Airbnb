@@ -5,8 +5,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var db;
 var connected = false;
-const url = "mongodb://ec2-54-212-241-30.us-west-2.compute.amazonaws.com/AirbnbMongo";
-// const url = "mongodb://ec2-54-149-150-222.us-west-2.compute.amazonaws.com/AirbnbMongo";
+const url = "";
 
 var fs = require('fs');
 var mongoose = require('mongoose');
