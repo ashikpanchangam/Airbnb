@@ -38,3 +38,7 @@ jspm_packages
 
 # Ignore .idea folder
 .idea/workspace.xml
+
+# For Jekyll site
+_site/
+
